@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>YONO GAMES HUB · Premium App Directory</title>
+<meta name="description" content="All YONO Games, Rummy Apps, Slots, Teen Patti, Bingo & Spin Games in one clean directory.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+--bg:#f5f7fc;--card-bg:#ffffff;--text-primary:#1a1e2b;--text-secondary:#5e6f8c;
+--blue:#1a73e8;--blue-dark:#0d47a1;--red:#e53935;--green:#2e7d32;
+--amber:#f59e0b;--amber-dark:#b45309;--border-light:#eef2f7;
+--shadow-sm:0 4px 10px rgba(0,0,0,0.02),0 2px 6px rgba(0,0,0,0.03);
+--shadow-md:0 8px 20px rgba(0,0,0,0.04),0 4px 12px rgba(0,0,0,0.03);
+--radius-card:20px;
+--font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+--bottom-nav-height:64px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text-primary);line-height:1.4;padding-bottom:calc(var(--bottom-nav-height) + 20px);overflow-x:hidden;width:100%}
+.top-bar{position:sticky;top:0;z-index:110;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);box-shadow:0 2px 12px rgba(0,0,0,0.02);width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;max-width:640px;margin:0 auto}
+.top-bar-title{font-weight:800;font-size:1.15rem;color:var(--text-primary);letter-spacing:-0.02em}
+.menu-toggle{background:#eef3fe;border:none;width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;flex-shrink:0}
+.menu-toggle:active{background:#d9e6ff}
+.menu-toggle svg{width:22px;height:22px;stroke:var(--blue);stroke-width:2.2;fill:none}
+.drawer-overlay{position:fixed;inset:0;background:rgba(10,14,25,0.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.25s ease}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;left:0;height:100%;width:82%;max-width:320px;background:#ffffff;z-index:210;transform:translateX(-105%);transition:transform 0.28s cubic-bezier(0.22,1,0.36,1);box-shadow:8px 0 30px rgba(0,0,0,0.08);display:flex;flex-direction:column;overflow-y:auto;padding:18px 18px 90px}
+.drawer.open{transform:translateX(0)}
+.drawer-header{display:flex;align-items:center;justify-content:flex-end;margin-bottom:20px}
+.drawer-title{font-weight:800;font-size:1.15rem;color:var(--text-primary)}
+.drawer-close{background:#f0f4fe;border:none;width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;flex-shrink:0}
+.drawer-close:active{background:#d9e6ff}
+.drawer-close svg{width:20px;height:20px;stroke:#1f2a44;stroke-width:2.4;fill:none}
+.drawer-section-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;color:var(--text-secondary);margin:16px 0 8px}
+.drawer-menu-item{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:16px;font-weight:600;font-size:0.95rem;color:#1f2a44;cursor:pointer;transition:background 0.15s;border:none;background:transparent;width:100%;text-align:left}
+.drawer-menu-item:active{background:#f0f4fe}
+.drawer-menu-item.active{background:#eef3fe;color:var(--blue)}
+.drawer-menu-item svg{display:none}
+.sticky-menu{position:sticky;top:67px;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);width:100%}
+.menu-scroll{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:10px 16px;gap:8px;align-items:center;max-width:640px;margin:0 auto;scroll-snap-type:x mandatory}
+.menu-scroll::-webkit-scrollbar{display:none}
+.menu-chip{flex:0 0 auto;padding:9px 20px;background:#f0f4fe;border-radius:40px;font-size:0.9rem;font-weight:500;color:#1f2a44;white-space:nowrap;border:1px solid transparent;transition:all 0.2s ease;scroll-snap-align:start;cursor:pointer;user-select:none}
+.menu-chip.active{background:var(--blue);color:white;border-color:var(--blue);box-shadow:0 6px 14px rgba(26,115,232,0.25)}
+.menu-chip:active{transform:scale(0.96)}
+.app-container{max-width:640px;margin:0 auto;padding:16px 14px 40px;width:100%}
+
+/* =========================================================
+   DIWA BANNER CAROUSEL — 3-ZONE LAYOUT (ARROW | CENTER | ARROW)
+   ========================================================= */
+.diwa-carousel-wrap{
+  position:relative;
+  width:100%;
+  margin:4px 0 14px;
+  border-radius:22px;
+  padding:2px;
+  background:linear-gradient(120deg,#ff9d00,#ffd400,#00e5ff,#0066ff,#7c3aed,#ff2fb3,#ff9d00);
+  background-size:400% 400%;
+  animation:diwaBorderFlow 8s linear infinite;
+  box-shadow:
+    0 0 22px rgba(255,157,0,0.30),
+    0 0 30px rgba(0,229,255,0.22),
+    0 12px 32px -12px rgba(124,58,237,0.45);
+}
+@keyframes diwaBorderFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.diwa-carousel{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:
+    radial-gradient(120% 140% at 0% 0%,rgba(255,157,0,0.10) 0%,transparent 55%),
+    radial-gradient(120% 140% at 100% 100%,rgba(124,58,237,0.16) 0%,transparent 55%),
+    linear-gradient(120deg,#05060e 0%,#0a0d1c 55%,#05070f 100%);
+  height:180px;
+  display:flex;
+  align-items:stretch;
+  touch-action:pan-y;
+}
+.diwa-stage{
+  position:relative;
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+  padding:0 44px; /* reserve space for fixed arrows */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.diwa-track{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+.diwa-slide{position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:18px;padding:10px 6px;opacity:1;transform:translate3d(100%,0,0);transition:transform .92s cubic-bezier(.22,.75,.2,1),opacity .92s ease;pointer-events:none;will-change:transform,opacity}
+.diwa-slide.active{opacity:1;transform:translate3d(0,0,0);pointer-events:auto}
+.diwa-slide.enter-right{opacity:1;transform:translate3d(100%,0,0);z-index:2}
+.diwa-slide.enter-left{opacity:1;transform:translate3d(-100%,0,0);z-index:2}
+.diwa-slide.leave-left{opacity:1;transform:translate3d(-100%,0,0);z-index:1}
+.diwa-slide.leave-right{opacity:1;transform:translate3d(100%,0,0);z-index:1}
+.diwa-slide.active.leave-left{transform:translate3d(-100%,0,0);z-index:1}
+.diwa-slide.active.leave-right{transform:translate3d(100%,0,0);z-index:1}
+/* Fixed banner logo: text-only game logo, no banner/game photo. */
+.diwa-slide .diwa-logo{
+  position:relative;
+  flex:0 0 84px;width:84px;height:84px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:visible;flex-shrink:0;
+  background:transparent;border:0;box-shadow:none;isolation:isolate;
+}
+/* Four-corner atomic frame only: the logo itself has NO LED/glow. */
+.diwa-atomic-svg{
+  position:absolute;inset:0;width:100%;height:100%;overflow:visible;
+  pointer-events:none;z-index:1;
+}
+.diwa-atomic-frame{
+  fill:none;
+  stroke:url(#diwaAtomicGradient);
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:url(#diwaAtomicGlow);
+}
+.diwa-atomic-svg{animation:diwaAtomicColor 4.8s linear infinite;}
+@keyframes diwaAtomicColor{
+  0%{filter:hue-rotate(0deg)}
+  50%{filter:hue-rotate(160deg)}
+  100%{filter:hue-rotate(360deg)}
+}
+.diwa-logo-mark{
+  width:70px;height:70px;
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:6px;
+  position:relative;z-index:3;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015));
+  box-shadow:none;
+  border:1px solid rgba(255,255,255,.07);
+}
+.diwa-logo-mark span{
+  display:block;
+  width:100%;
+  max-width:100%;
+  font-size:.67rem;
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:.025em;
+  color:#ffffff;
+  text-transform:uppercase;
+  white-space:normal;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-shadow:none;
+}
+.diwa-logo-mark .logo-accent{
+  display:block;margin-top:4px;font-size:.39rem;letter-spacing:.06em;font-weight:800;
+  color:#cbd5e1;opacity:.9;white-space:nowrap;
+}
+.diwa-info{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  text-align:center;
+}
+.diwa-name{
+  font-size:1.05rem;font-weight:800;color:#ffffff;letter-spacing:-0.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+  text-shadow:none;
+}
+.diwa-url{
+  font-size:0.66rem;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
+  color:#7cf3ff;text-shadow:none;
+}
+.diwa-badges{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:1px}
+.diwa-badge{
+  font-size:0.66rem;font-weight:700;padding:3px 9px;border-radius:20px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(255,255,255,0.06);
+  color:#e5edff;letter-spacing:0.3px;white-space:nowrap
+}
+.diwa-badge.bonus{color:#ffd7a8;border-color:rgba(255,157,0,0.55);background:rgba(255,157,0,0.10)}
+.diwa-badge.withdraw{color:#b6ffcf;border-color:rgba(34,197,94,0.5);background:rgba(34,197,94,0.10)}
+
+/* DOWNLOAD BUTTON — CENTER (inside center zone) */
+.diwa-download{
+  margin-top:6px;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:8px 18px;border-radius:30px;
+  font-weight:800;font-size:0.74rem;letter-spacing:0.5px;color:#04121f;
+  background:linear-gradient(135deg,#ff9d00,#ffd400,#22c55e,#00e5ff,#7c3aed);
+  background-size:300% 100%;
+  animation:diwaBtnFlow 6s linear infinite;
+  box-shadow:0 6px 18px -4px rgba(255,157,0,0.55),0 0 16px rgba(0,229,255,0.35);
+  text-decoration:none;white-space:nowrap;
+  border:1.5px solid rgba(255,255,255,0.35);
+}
+@keyframes diwaBtnFlow{
+  0%{background-position:0% 50%}
+  100%{background-position:300% 50%}
+}
+.diwa-download:active{transform:scale(0.95)}
+.diwa-download svg{width:13px;height:13px;stroke:#04121f;stroke-width:2.6;fill:none}
+
+/* FIXED ARROWS on left/right edges */
+.diwa-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(3,8,20,.92);border:1.5px solid #00e5ff;box-shadow:0 0 7px #00e5ff,0 0 16px rgba(0,229,255,.75),0 0 26px rgba(255,47,179,.45),inset 0 0 10px rgba(0,229,255,.18);color:#7cf3ff;cursor:pointer;z-index:5;transition:transform .18s ease,background .2s ease,box-shadow .2s ease;flex-shrink:0}
+.diwa-arrow:hover{box-shadow:0 0 9px #00e5ff,0 0 20px rgba(0,229,255,.9),0 0 30px rgba(255,47,179,.55)}
+.diwa-arrow:active{transform:translateY(-50%) scale(.9);background:rgba(0,229,255,.18)}
+.diwa-arrow svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.6;fill:none}
+.diwa-arrow.prev{left:6px}
+.diwa-arrow.next{right:6px}
+
+/* DOTS — centered below banner */
+.diwa-dots{
+  display:flex;justify-content:center;align-items:center;gap:7px;
+  padding:10px 0 2px;
+}
+.diwa-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(94,111,140,0.35);
+  transition:all 0.3s ease;cursor:pointer;
+}
+.diwa-dot.active{
+  width:22px;border-radius:6px;
+  background:linear-gradient(90deg,#ff9d00,#00e5ff,#7c3aed,#ff2fb3);
+  box-shadow:0 0 10px rgba(0,229,255,0.7),0 0 16px rgba(124,58,237,0.45);
+}
+
+.section-title{display:flex;align-items:center;gap:8px;font-size:1.25rem;font-weight:700;letter-spacing:-0.01em;margin:28px 0 16px;color:var(--text-primary)}
+.section-title:first-of-type{margin-top:8px}
+.section-title svg{width:22px;height:22px;stroke:var(--blue);stroke-width:1.8;fill:none}
+.app-card{display:flex;align-items:center;gap:16px;background:var(--card-bg);border-radius:var(--radius-card);padding:14px 16px 14px 14px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:transform 0.15s ease,box-shadow 0.2s ease;border:1px solid var(--border-light);cursor:pointer;position:relative;overflow:hidden}
+.app-card:active{transform:scale(0.99);box-shadow:var(--shadow-md)}
+.app-icon{flex:0 0 72px;width:72px;height:72px;border-radius:14px;background:transparent;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:none;border:0}
+.app-icon img{width:100%;height:100%;object-fit:contain;display:block;background:transparent;border:0;border-radius:0}
+.app-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.app-name{font-size:1.02rem;font-weight:700;color:var(--text-primary);letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge-row{display:flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:500}
+.badge-row svg{width:16px;height:16px;flex-shrink:0}
+.badge-red{color:var(--red)}
+.badge-green{color:var(--green)}
+.download-btn-sm{flex:0 0 auto;background:#1a1e2b;color:white;border:none;padding:10px 16px;border-radius:30px;font-weight:600;font-size:0.75rem;letter-spacing:0.3px;display:flex;align-items:center;gap:5px;box-shadow:0 6px 14px rgba(0,0,0,0.08);transition:all 0.15s ease;cursor:pointer;white-space:nowrap}
+.download-btn-sm svg{width:14px;height:14px;stroke:white;stroke-width:2.2;fill:none}
+.download-btn-sm:active{transform:scale(0.94);background:#2d3348}
+.featured-strip{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:6px 2px 14px;margin:6px 0 4px;scroll-snap-type:x mandatory}
+.featured-strip::-webkit-scrollbar{display:none}
+.featured-item{flex:0 0 auto;width:130px;background:#ffffff;border-radius:18px;padding:12px 10px;text-align:center;box-shadow:var(--shadow-sm);border:1px solid var(--border-light);cursor:pointer;transition:transform 0.15s ease,box-shadow 0.2s ease;scroll-snap-align:start}
+.featured-item:active{transform:scale(0.96);box-shadow:var(--shadow-md)}
+.featured-item-icon{width:52px;height:52px;border-radius:0;overflow:hidden;margin:0 auto 8px;background:transparent;border:0;box-shadow:none}
+.featured-item-icon img{width:100%;height:100%;object-fit:contain;display:block;background:transparent;border:0;border-radius:0}
+.featured-item-name{font-size:0.78rem;font-weight:700;color:#1a1e2b;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
+.featured-item-bonus{font-size:0.68rem;font-weight:600;color:var(--red);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.featured-info-card{background:#ffffff;border-radius:24px;padding:22px 18px;margin:6px 0 22px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.featured-info-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #f1f5f9}
+.featured-info-header svg{width:24px;height:24px;stroke:var(--blue);stroke-width:1.8;fill:none;flex-shrink:0}
+.featured-info-header-text{font-size:1.1rem;font-weight:800;color:#0b1220;letter-spacing:-0.01em}
+.featured-info-section{margin-bottom:18px}
+.featured-info-section:last-child{margin-bottom:0}
+.featured-info-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:var(--blue);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.featured-info-label::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.featured-info-text{font-size:0.92rem;color:#2f3b52;line-height:1.65}
+.featured-info-text strong{color:#0b1220;font-weight:700}
+.featured-info-tags{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:6px}
+.featured-info-tag{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:#1f2a44;white-space:nowrap}
+.featured-info-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#1a73e8;flex-shrink:0}
+.featured-info-tag.alt::before{background:#e53935}
+.featured-info-tag.alt2::before{background:#2e7d32}
+.featured-info-tag.alt3::before{background:#f59e0b}
+.featured-info-tag.alt4::before{background:#7e22ce}
+.warning-card-single{background:#ffffff;border-radius:24px;padding:24px 20px 22px;margin:26px 0 12px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.warning-single-header{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #f1f5f9}
+.warning-single-svg{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#fee2e2,#fecaca);border:2px solid #fca5a5;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -6px rgba(229,57,53,0.28);flex-shrink:0}
+.warning-single-svg svg{width:40px;height:40px;stroke:#b91c1c;stroke-width:2.3;fill:none}
+.warning-single-title{font-size:1.05rem;font-weight:800;color:#b91c1c;letter-spacing:0.3px;text-transform:uppercase;text-align:center}
+.warning-single-subtitle{font-size:0.8rem;font-weight:600;color:#7f1d1d;text-align:center;letter-spacing:0.2px}
+.warning-tags-text-block{display:flex;flex-direction:column;gap:12px;padding:2px 2px 0}
+.warning-text-item{display:flex;align-items:flex-start;gap:10px;padding-left:4px}
+.warning-text-dot{width:8px;height:8px;border-radius:50%;background:#b91c1c;flex-shrink:0;margin-top:7px}
+.warning-text-item.blue .warning-text-dot{background:#1e40af}
+.warning-text-item.green .warning-text-dot{background:#15803d}
+.warning-text-item.amber .warning-text-dot{background:#b45309}
+.warning-text-item.purple .warning-text-dot{background:#7e22ce}
+.warning-text-item.slate .warning-text-dot{background:#475569}
+.warning-text-content{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.warning-text-title{font-size:0.83rem;font-weight:800;color:#334155;letter-spacing:0.2px;text-transform:uppercase}
+.warning-text-item.red .warning-text-title{color:#b91c1c}
+.warning-text-item.blue .warning-text-title{color:#1e40af}
+.warning-text-item.green .warning-text-title{color:#15803d}
+.warning-text-item.amber .warning-text-title{color:#b45309}
+.warning-text-item.purple .warning-text-title{color:#7e22ce}
+.warning-text-item.slate .warning-text-title{color:#475569}
+.warning-text-desc{font-size:0.76rem;font-weight:500;color:#475569;line-height:1.45}
+.detail-view{display:none;animation:fadeSlide 0.25s ease}
+.detail-view.active{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.back-button{display:inline-flex;align-items:center;gap:6px;background:#eef3fe;border:none;padding:10px 18px;border-radius:30px;font-weight:600;font-size:0.9rem;color:var(--blue);margin-bottom:18px;cursor:pointer;transition:background 0.2s}
+.back-button svg{width:18px;height:18px;stroke:var(--blue);stroke-width:2.2;fill:none}
+.back-button:active{background:#d9e6ff}
+.detail-hero{display:grid;grid-template-columns:minmax(0,0.94fr) minmax(0,1.06fr);gap:14px;align-items:start;margin:2px 0 18px}
+.detail-hero-left{display:flex;flex-direction:column;align-items:center;min-width:0}
+.detail-logo-wrap{display:flex;justify-content:center;width:100%;margin:0 0 12px}
+.detail-logo{width:min(100%,250px);aspect-ratio:1/1;border-radius:28px;background:#fff;box-shadow:0 8px 24px rgba(15,23,42,.10);display:flex;align-items:center;justify-content:center;overflow:hidden;animation:none;border:1px solid #eef2f7;padding:0}
+.detail-logo img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#fff;border:0;border-radius:27px}
+.detail-name{font-size:1.7rem;font-weight:800;text-align:left;letter-spacing:-0.02em;margin:2px 0 16px;color:#0b1220;word-break:break-word}
+.detail-title-mobile{display:none}
+.detail-requirement-center{width:100%;max-width:250px;margin:12px auto 8px;background:#f1f1f1;border-radius:18px;padding:11px 12px;text-align:center;border:1px solid #e6e9ef;box-shadow:0 5px 14px rgba(15,23,42,.05)}
+.detail-requirement-label{font-size:.72rem;font-weight:850;text-transform:uppercase;letter-spacing:.5px;color:#4a4a4a;margin-bottom:3px}
+.detail-requirement-value{font-size:.9rem;font-weight:650;color:#555;line-height:1.3;word-break:break-word}
+.detail-rating{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px 0 2px;color:#3f4b60}
+.detail-stars{font-size:1.55rem;letter-spacing:1px;color:#f2b400;line-height:1}
+.detail-rating-score{font-size:1.55rem;font-weight:900;color:#1aaf9c}
+.detail-rating-five{font-size:1rem;font-weight:700;color:#4b5563}
+
+.detail-rating-stars{display:flex;align-items:center;gap:3px;line-height:1}
+.detail-rating-stars svg{width:20px;height:20px;fill:#f2b400;stroke:#f2b400;stroke-width:1.5}
+.detail-rating-score{min-width:38px;text-align:left}
+.detail-download-count{display:flex;align-items:center;justify-content:center;gap:7px;margin:2px auto 8px;color:#536174;font-size:.82rem;font-weight:700;letter-spacing:.2px}
+.detail-download-count svg{width:18px;height:18px;stroke:#1a73e8;stroke-width:2;fill:none}
+.detail-rating-below-download{margin:10px 0 0}
+.detail-meta-icon{width:21px;height:21px;stroke:#1a73e8;stroke-width:1.9;fill:none;vertical-align:-5px;margin-right:7px}
+.detail-meta-label-row{display:flex;align-items:center;gap:2px}
+.detail-votes{font-size:1rem;color:#4b5563;margin:4px 0 12px}
+.detail-report{display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:#4b5563;font-size:.95rem;font-weight:600;padding:6px 10px;cursor:pointer}
+.detail-report svg{width:22px;height:22px;stroke:#4b5563;stroke-width:2;fill:none}
+.detail-side-meta{display:flex;flex-direction:column;gap:26px;min-width:0;padding:10px 2px 0}
+.detail-meta-box{background:transparent;border:0;border-radius:0;padding:0;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:7px}
+.detail-meta-label{display:inline-flex;align-items:center;gap:5px;font-size:.82rem;font-weight:750;color:#526078;line-height:1.2;margin:0;white-space:nowrap}
+.detail-meta-label .detail-meta-icon{width:17px;height:17px;min-width:17px;stroke:#1a73e8;stroke-width:1.8;margin:0;vertical-align:0}
+.detail-meta-box > .detail-meta-label > svg{width:17px;height:17px;min-width:17px}
+.detail-meta-value{font-size:.92rem;font-weight:800;color:#111827;line-height:1.2;white-space:nowrap;overflow:visible;text-align:left}
+.detail-meta-updated .detail-meta-label svg{stroke:#1a73e8}
+.detail-meta-size .detail-meta-label svg{stroke:#1a73e8}
+.detail-meta-bonus .detail-meta-label svg{stroke:#e53935}
+.detail-meta-withdrawal .detail-meta-label svg{stroke:#2e7d32}
+.detail-meta-value.accent{color:#1da997;text-decoration:none}
+.detail-meta-value.small{font-size:.88rem}
+.detail-meta-box:first-child,.detail-meta-box:last-child{border-radius:0}
+.info-grid{display:none}
+.info-box{background:white;border-radius:18px;padding:12px 4px;text-align:center;box-shadow:var(--shadow-sm);border:1px solid var(--border-light);display:flex;flex-direction:column;align-items:center;gap:4px}
+.info-box svg{width:22px;height:22px;stroke:var(--blue);stroke-width:1.8;fill:none;margin-bottom:2px}
+.info-value{font-weight:800;font-size:0.92rem;color:#0b1220;line-height:1.2;word-break:break-word}
+.info-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.3px;font-weight:600;color:var(--text-secondary)}
+.detail-action-bar{width:100%;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:18px auto 16px;padding:0 10px;box-sizing:border-box}
+.detail-action-bar .detail-download-center{margin:0;flex:0 0 auto}
+.detail-action-item{min-height:48px;box-sizing:border-box}
+.detail-action-bar .detail-report{background:#fff;border:1px solid #dbe2ea;border-radius:12px;padding:10px 16px;box-shadow:0 5px 14px rgba(15,23,42,.08)}
+.detail-action-bar .detail-requirement-center{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1px solid #dbe2ea;border-radius:12px;padding:8px 16px;box-shadow:0 5px 14px rgba(15,23,42,.08);text-align:center}
+.big-download-btn{width:min(92%,360px);background:#1a73e8;border:none;padding:15px 18px;border-radius:14px;color:white;font-weight:850;font-size:1rem;letter-spacing:.35px;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 8px 20px rgba(26,115,232,.24);transition:all .2s ease;margin:12px auto 10px;cursor:pointer;border:1px solid rgba(255,255,255,.3);text-decoration:none}
+.big-download-btn svg{width:22px;height:22px;stroke:white;stroke-width:2.3;fill:none}
+.big-download-btn:active{transform:scale(.97);background:#155fc4;box-shadow:0 6px 15px rgba(26,115,232,.3)}
+.game-info-card{background:#ffffff;border-radius:24px;padding:22px 18px;margin:8px 0 18px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.game-info-card-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #f1f5f9}
+.game-info-card-header svg{width:24px;height:24px;stroke:var(--blue);stroke-width:1.8;fill:none;flex-shrink:0}
+.game-info-card-header-text{font-size:1.1rem;font-weight:800;color:#0b1220;letter-spacing:-0.01em;word-break:break-word}
+.game-info-section{margin-bottom:18px}
+.game-info-section:last-child{margin-bottom:0}
+.game-info-label{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:var(--blue);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.game-info-label::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.game-info-text{font-size:0.92rem;color:#2f3b52;line-height:1.65}
+.game-info-text strong{color:#0b1220;font-weight:700}
+.game-tags-card{background:#ffffff;border-radius:20px;padding:18px 18px 16px;margin:20px 0 8px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.game-tags-card-title{font-size:0.78rem;font-weight:800;color:#5e6f8c;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:12px}
+.game-tags-plain{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.game-tag-plain{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:#1f2a44;white-space:nowrap}
+.game-tag-plain::before{content:"";width:6px;height:6px;border-radius:50%;background:#1a73e8;flex-shrink:0}
+.game-tag-plain.alt::before{background:#e53935}
+.game-tag-plain.alt2::before{background:#2e7d32}
+.game-tag-plain.alt3::before{background:#f59e0b}
+.game-tag-plain.alt4::before{background:#7e22ce}
+.about-card{background:#ffffff;border-radius:24px;padding:20px 18px;margin:24px 0 18px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.about-header{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;margin-bottom:16px;word-break:break-word}
+.about-header svg{width:24px;height:24px;stroke:var(--blue);stroke-width:1.8;fill:none;flex-shrink:0}
+.feature-list{display:flex;flex-direction:column;gap:8px;margin:14px 0;list-style:none}
+.feature-list li{display:flex;align-items:flex-start;gap:8px;font-size:0.92rem;color:#2b364b}
+.feature-list li::before{content:"✓";color:var(--green);font-weight:700;margin-right:4px}
+.info-section{display:none;animation:fadeSlide 0.25s ease}
+.info-section.active{display:block}
+.info-section-title{font-size:1.6rem;font-weight:800;letter-spacing:-0.02em;margin:4px 0 18px;color:#0b1220}
+.info-block{background:#ffffff;border-radius:24px;padding:20px 18px;margin-bottom:16px;box-shadow:var(--shadow-sm);border:1px solid var(--border-light)}
+.info-block-header{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;margin-bottom:12px;color:#0b1220}
+.info-block-header svg{width:22px;height:22px;stroke:var(--blue);stroke-width:1.8;fill:none;flex-shrink:0}
+.info-block p{font-size:0.93rem;color:#2f3b52;line-height:1.65;margin-bottom:10px}
+.info-block p:last-child{margin-bottom:0}
+.info-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.info-tag{background:#eef3fe;padding:7px 14px;border-radius:40px;font-size:0.78rem;font-weight:600;color:#1f2a44;border:1px solid #d9e6ff}
+.other-apps-title{margin-top:32px;margin-bottom:10px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--bottom-nav-height);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--border-light);box-shadow:0 -4px 20px rgba(0,0,0,0.04);z-index:150;display:flex;align-items:stretch;justify-content:space-around;padding:0 4px}
+.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;border:none;cursor:pointer;color:var(--text-secondary);font-family:var(--font);font-size:0.65rem;font-weight:600;letter-spacing:0.2px;padding:6px 2px;transition:color 0.2s ease,transform 0.15s ease;position:relative}
+.bottom-nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.9;fill:none;transition:stroke 0.2s ease}
+.bottom-nav-item:active{transform:scale(0.92)}
+.bottom-nav-item.active{color:var(--blue)}
+.bottom-nav-item.active::after{content:'';position:absolute;top:4px;width:22px;height:3px;border-radius:3px;background:var(--blue)}
+
+@media (max-width:520px){
+  .detail-hero{grid-template-columns:minmax(0,0.94fr) minmax(0,1.06fr);gap:10px}
+  .detail-logo{max-width:100%;border-radius:22px}
+  .detail-logo img{border-radius:21px}
+  .detail-side-meta{gap:22px;padding-top:8px}
+  .detail-meta-box{padding:0;min-height:0}
+  .detail-meta-label{font-size:.74rem}
+  .detail-meta-value{font-size:.82rem}
+  .detail-meta-value.small{font-size:.76rem}
+  .detail-requirement-center{max-width:100%;padding:9px 10px;margin:10px auto 7px}
+  .detail-rating{gap:4px}
+  .detail-stars{font-size:1.2rem}
+  .detail-rating-score{font-size:1.2rem}
+  .detail-rating-five{font-size:.78rem}
+  .detail-votes{font-size:.82rem}
+  .detail-report{font-size:.8rem}
+  .detail-action-bar{gap:8px;margin:12px auto 14px;padding:0 4px}
+  .detail-action-bar .detail-download-center{width:100%;max-width:360px}
+  .detail-action-bar .detail-action-item{flex:1 1 auto;min-width:0}
+  .detail-action-bar .detail-report{justify-content:center;padding:9px 10px}
+  .detail-action-bar .detail-requirement-center{padding:8px 9px;font-size:.72rem}
+  .detail-name{display:none}
+  .detail-title-mobile{display:block;font-size:1.25rem;line-height:1.25;font-weight:850;text-align:left;margin:2px 0 12px}
+}
+
+@media (max-width:380px){
+.app-icon{flex:0 0 62px;width:62px;height:62px}
+.app-name{font-size:0.92rem}
+.download-btn-sm{padding:8px 12px;font-size:0.68rem}
+.info-box{padding:10px 2px}
+.info-value{font-size:0.8rem}
+.info-label{font-size:0.52rem}
+.detail-name{font-size:1.4rem}
+.bottom-nav-item{font-size:0.58rem}
+.bottom-nav-item svg{width:20px;height:20px}
+.warning-card-single{padding:20px 16px 18px}
+.warning-single-svg{width:62px;height:62px}
+.warning-single-svg svg{width:34px;height:34px}
+.warning-single-title{font-size:0.95rem}
+.warning-single-subtitle{font-size:0.74rem}
+.warning-text-title{font-size:0.77rem}
+.warning-text-desc{font-size:0.72rem}
+.featured-item{width:118px;padding:10px 8px}
+.featured-item-icon{width:46px;height:46px}
+.featured-item-name{font-size:0.72rem}
+.game-tag-plain{font-size:0.76rem}
+.featured-info-tag{font-size:0.76rem}
+.game-info-card-header-text{font-size:1rem}
+.game-info-text{font-size:0.86rem}
+.featured-info-header-text{font-size:1rem}
+.featured-info-text{font-size:0.86rem}
+.diwa-carousel{height:168px}
+.diwa-stage{padding:0 40px}
+.diwa-logo{flex:0 0 74px;width:74px;height:74px;border-radius:18px}
+.diwa-atomic-svg{width:100%;height:100%}
+.diwa-name{font-size:0.9rem}
+.diwa-url{font-size:0.58rem}
+.diwa-badge{font-size:0.62rem;padding:3px 8px}
+.diwa-download{padding:7px 14px;font-size:0.68rem}
+.diwa-arrow{width:32px;height:32px}
+.diwa-arrow svg{width:14px;height:14px}
+}
+@media (min-width:641px){
+.app-container{padding:16px 24px 60px}
+.bottom-nav{max-width:640px;left:50%;transform:translateX(-50%);border-radius:20px 20px 0 0;border-left:1px solid var(--border-light);border-right:1px solid var(--border-light)}
+.diwa-carousel{height:200px}
+}
+img,svg,.app-card{max-width:100%}
+/* Fixed image boxes: original artwork stays visible without crop or layout shift. */
+.app-icon,.featured-item-icon,.detail-logo,.diwa-logo{contain:layout paint;flex-shrink:0}
+.app-icon img,.featured-item-icon img,.detail-logo img{aspect-ratio:1/1;object-position:center;backface-visibility:hidden}
+.diwa-logo img{aspect-ratio:auto;object-fit:contain;object-position:center;backface-visibility:hidden}
+.diwa-logo .diwa-atomic-svg{width:100%;height:100%;max-width:none}
+
+/* =========================================================
+   CANDY-MAP GAME VISUAL THEME — PURE HTML/CSS/JS
+   Inspired by the uploaded level-map screenshots; no external UI library.
+   Existing content and app data remain intact.
+   ========================================================= */
+body{
+  background:
+    radial-gradient(circle at 8% 8%,rgba(255,255,255,.75) 0 7%,transparent 18%),
+    radial-gradient(circle at 92% 18%,rgba(255,255,255,.48) 0 6%,transparent 18%),
+    linear-gradient(180deg,#d9fbfa 0%,#b9f0ed 28%,#8ddbd7 72%,#73c9d0 100%);
+}
+.app-container{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(232,255,253,.86),rgba(139,222,218,.58));border-radius:0 0 34px 34px;box-shadow:inset 0 1px rgba(255,255,255,.65)}
+.app-container::before,.app-container::after{content:"";position:absolute;pointer-events:none;z-index:0;border-radius:50%}
+.app-container::before{width:260px;height:260px;left:-125px;top:300px;background:radial-gradient(circle,#b8f5b5 0 36%,rgba(93,190,173,.3) 37% 55%,transparent 56%);filter:blur(2px);opacity:.85}
+.app-container::after{width:300px;height:300px;right:-150px;top:760px;background:radial-gradient(circle,#f6d8a5 0 24%,rgba(243,178,100,.34) 25% 48%,transparent 49%);opacity:.7}
+.app-container>*{position:relative;z-index:1}
+.top-bar{background:rgba(255,255,255,.97);border-bottom:2px solid #e8eef8;box-shadow:0 5px 18px rgba(63,110,150,.10)}
+.top-bar-title{font-size:1.16rem;letter-spacing:-.03em}
+.menu-toggle{background:#edf4ff;box-shadow:inset 0 0 0 1px #e2ebfa,0 6px 14px rgba(57,105,170,.10)}
+.sticky-menu{background:rgba(255,255,255,.93);box-shadow:0 4px 12px rgba(50,100,130,.08)}
+.menu-chip{background:#ffeaf5;border-color:#f6c6df;color:#7d365b;box-shadow:0 3px 8px rgba(221,74,142,.08)}
+.menu-chip.active{background:linear-gradient(180deg,#ff69ae,#ee3f8e);border-color:#e93684;box-shadow:0 6px 15px rgba(232,53,132,.25)}
+.section-title{color:#264466;text-shadow:0 1px rgba(255,255,255,.7)}
+.app-card{background:linear-gradient(180deg,#fffefe 0%,#fff5fa 100%);border:2px solid #f4cfe2;border-radius:24px;box-shadow:0 9px 18px rgba(75,128,151,.12),inset 0 1px rgba(255,255,255,.95);padding:13px 14px 13px 12px}
+.app-card::after{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:linear-gradient(90deg,#ff72b5,#ffc6df,#8edfea);opacity:.75}
+.app-icon{width:76px;height:76px;border-radius:18px;background:linear-gradient(145deg,#d9f8ff,#fff0f7);border:2px solid #fff;box-shadow:0 5px 12px rgba(64,124,151,.16)}
+.app-icon img{border-radius:14px}
+.app-name{color:#243653;font-weight:850}
+.badge-red{color:#d82f65}.badge-green{color:#25874b}
+.download-btn-sm{background:linear-gradient(180deg,#3c8ff5,#1769d8);border:1px solid #8dc4ff;border-radius:18px;box-shadow:0 6px 12px rgba(28,100,200,.22),inset 0 1px rgba(255,255,255,.45);font-weight:850}
+.download-btn-sm:active{background:#155fc4}
+.featured-item{background:linear-gradient(180deg,#fff,#fff1f8);border:2px solid #f4cfe2;box-shadow:0 8px 16px rgba(70,125,150,.12)}
+.featured-item-name{color:#294363}.featured-item-bonus{color:#d52f67}
+.warning-card-single,.game-info-card,.about-card,.info-block{background:rgba(255,255,255,.94);border:2px solid rgba(234,245,250,.9);box-shadow:0 10px 22px rgba(63,117,140,.13);border-radius:28px}
+.back-button{background:linear-gradient(180deg,#fff4fb,#ffe5f1);color:#2b76cf;border:1px solid #f2c5db;box-shadow:0 5px 12px rgba(73,128,156,.10)}
+.detail-view{position:relative}
+.detail-view::before{content:"";position:absolute;inset:92px 0 auto;height:920px;z-index:-1;pointer-events:none;background:
+  radial-gradient(circle at 50% 6%,rgba(255,255,255,.88) 0 28px,transparent 30px),
+  radial-gradient(circle at 50% 16%,rgba(255,255,255,.65) 0 18px,transparent 20px),
+  radial-gradient(circle at 50% 27%,rgba(255,255,255,.45) 0 24px,transparent 26px),
+  linear-gradient(90deg,transparent 0 47%,rgba(255,255,255,.16) 48% 52%,transparent 53%);
+  opacity:.8}
+.detail-hero{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,241,248,.9));border:2px solid #f3d3e2;border-radius:30px;padding:16px 12px;box-shadow:0 12px 25px rgba(67,120,145,.14)}
+.detail-logo{border-radius:24px;background:linear-gradient(145deg,#fff,#f6fbff);border:4px solid #fff;box-shadow:0 8px 18px rgba(63,115,144,.18)}
+.detail-logo img{border-radius:19px}
+.detail-name{color:#2a405f}
+.detail-rating-stars svg{filter:drop-shadow(0 2px 1px rgba(198,128,0,.18))}
+.detail-download-count{font-size:.9rem;color:#3d5978}
+.detail-side-meta{background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(232,249,248,.92));border:2px solid #d6eef0;border-radius:24px;padding:14px 12px;box-shadow:0 8px 18px rgba(65,122,145,.10)}
+.detail-meta-box{border-bottom:1px dashed #d4e4eb;padding-bottom:12px;margin-bottom:12px}.detail-meta-box:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.detail-meta-label{color:#49627e}.detail-meta-value{color:#243b5a;font-weight:850}
+.big-download-btn{background:linear-gradient(180deg,#3e93f7 0%,#1769d8 100%);border:2px solid #a9d2ff;border-radius:22px;box-shadow:0 8px 18px rgba(28,105,211,.28),inset 0 1px rgba(255,255,255,.5)}
+.game-info-card{overflow:hidden}
+.game-info-card-header{background:linear-gradient(90deg,#fff0f8,#e7fbfa);padding:15px 16px;border-bottom:1px solid #dcecf0}
+.game-info-label{color:#3971a9}.game-info-text{color:#334d6a}
+.other-apps-title{color:#2a4563}
+.info-section{background:linear-gradient(180deg,rgba(225,251,249,.72),rgba(143,218,215,.55));border-radius:30px;padding:10px 0}
+.info-block{margin-bottom:16px}
+.bottom-nav{height:74px;background:linear-gradient(180deg,rgba(255,234,247,.98),rgba(255,202,227,.98));border-top:2px solid #f2a9cc;box-shadow:0 -8px 20px rgba(66,117,140,.12)}
+.bottom-nav-item{color:#536c87;font-weight:750}.bottom-nav-item.active{color:#d52d73}.bottom-nav-item.active::after{background:#d52d73}.bottom-nav-item svg{stroke-width:2.1}
+@media(max-width:520px){
+  .app-container{padding-left:10px;padding-right:10px}
+  .app-card{gap:11px;padding-right:10px}
+  .app-icon{flex-basis:70px;width:70px;height:70px}
+  .download-btn-sm{padding:9px 10px;font-size:.68rem}
+  .detail-hero{padding:12px 8px;border-radius:26px}
+}
+
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+<defs>
+  <linearGradient id="diwaAtomicGradient" x1="0" y1="0" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00e5ff"/>
+    <stop offset="25%" stop-color="#8b5cf6"/>
+    <stop offset="50%" stop-color="#ff2fb3"/>
+    <stop offset="75%" stop-color="#22c55e"/>
+    <stop offset="100%" stop-color="#00e5ff"/>
+  </linearGradient>
+  <filter id="diwaAtomicGlow" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="2.2" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+</svg>
+
+<header class="top-bar">
+<div class="top-bar-title">YONO GAMES HUB</div>
+<button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+<line x1="3" y1="6" x2="21" y2="6"/>
+<line x1="3" y1="12" x2="21" y2="12"/>
+<line x1="3" y1="18" x2="21" y2="18"/>
+</svg>
+</button>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<aside class="drawer" id="drawer">
+<div class="drawer-header">
+<div></div>
+<button class="drawer-close" id="drawerClose" aria-label="Close menu">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"/>
+<line x1="6" y1="6" x2="18" y2="18"/>
+</svg>
+</button>
+</div>
+<button class="drawer-menu-item" data-info="home">Home</button>
+<button class="drawer-menu-item" data-info="about">About</button>
+<button class="drawer-menu-item" data-info="contact">Contact</button>
+<button class="drawer-menu-item" data-info="disclaimer">Disclaimer</button>
+<button class="drawer-menu-item" data-info="privacy">Privacy Policy</button>
+</aside>
+
+<main class="app-container" id="appContainer">
+<section id="homeView">
+
+<!-- ============ DIWA BANNER CAROUSEL — 3-ZONE: FIXED LEFT ARROW | CENTER | FIXED RIGHT ARROW ============ -->
+<div class="diwa-carousel-wrap">
+  <div class="diwa-carousel" id="diwaCarousel">
+    <!-- FIXED LEFT ARROW -->
+    <button class="diwa-arrow prev" id="diwaPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <!-- FLEXIBLE CENTER ZONE -->
+    <div class="diwa-stage">
+      <div class="diwa-track" id="diwaTrack"></div>
+    </div>
+
+    <!-- FIXED RIGHT ARROW -->
+    <button class="diwa-arrow next" id="diwaNext" aria-label="Next">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <div class="diwa-dots" id="diwaDots"></div>
+</div>
+
+<!-- EXISTING CATEGORY NAV — DIRECTLY BELOW BANNER -->
+<nav class="sticky-menu" id="mainMenu" style="position:static;top:auto;margin:0 -14px 12px;border-bottom:none">
+<div class="menu-scroll" id="menuScroll">
+<div class="menu-chip active" data-category="all">All Games</div>
+<div class="menu-chip" data-category="rummy">Rummy</div>
+<div class="menu-chip" data-category="teenpatti">Teen Patti</div>
+<div class="menu-chip" data-category="slots">Slots</div>
+<div class="menu-chip" data-category="spin">Spin &amp; Bingo</div>
+<div class="menu-chip" data-category="yono">YONO Games</div>
+<div class="menu-chip" data-category="new">New Games</div>
+<div class="menu-chip" data-category="other">Other Games</div>
+</div>
+</nav>
+
+<div class="section-title">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+<span id="homeCountLabel">74 Apps</span>
+</div>
+<div id="appListContainer"></div>
+
+<div class="section-title" style="margin-top:24px">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+<span>Featured Games</span>
+</div>
+<div class="featured-strip" id="featuredStrip"></div>
+
+
+<div class="warning-card-single" id="homeWarningCard">
+<div class="warning-single-header">
+<div class="warning-single-svg">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+<line x1="12" y1="9" x2="12" y2="13"/>
+<line x1="12" y1="17" x2="12.01" y2="17"/>
+</svg>
+</div>
+<div class="warning-single-title">18+ Only · Adults Only</div>
+<div class="warning-single-subtitle">Read all safety warnings before downloading any app</div>
+</div>
+<div class="warning-tags-text-block">
+<div class="warning-text-item red"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Financial Risk Warning</span><span class="warning-text-desc">Real-money gaming involves financial risk. You may lose money. Never wager more than you can afford to lose.</span></div></div>
+<div class="warning-text-item red"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Play Responsibly</span><span class="warning-text-desc">Gaming should be fun, not a source of stress. Set time and spending limits. Never chase losses. Take regular breaks.</span></div></div>
+<div class="warning-text-item blue"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Directory Website Only</span><span class="warning-text-desc">This site is a directory. We do NOT host, operate, or manage any games. All downloads redirect to official third-party sources.</span></div></div>
+<div class="warning-text-item blue"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">No Earnings Guarantee</span><span class="warning-text-desc">Bonuses, withdrawals, and rewards shown are provided by third-party apps. We do not guarantee any earnings or payouts.</span></div></div>
+<div class="warning-text-item green"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Check Local Laws</span><span class="warning-text-desc">Real-money gaming is restricted or banned in some regions. Verify your local laws before downloading or playing any listed app.</span></div></div>
+<div class="warning-text-item amber"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Third-Party Downloads</span><span class="warning-text-desc">All download links lead to external websites. We are not responsible for their content, safety, or privacy practices. Download at your own risk.</span></div></div>
+<div class="warning-text-item amber"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Security &amp; Privacy</span><span class="warning-text-desc">Install apps only from trusted sources. Never share OTPs, bank details, or personal info with unknown apps or agents.</span></div></div>
+<div class="warning-text-item purple"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Need Help?</span><span class="warning-text-desc">If you or someone you know has a gaming problem, seek support from local helplines or professional counselling services.</span></div></div>
+<div class="warning-text-item purple"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Age Verification Required</span><span class="warning-text-desc">By using this website, you confirm that you are at least 18 years old and legally allowed to view real-money gaming content in your region.</span></div></div>
+<div class="warning-text-item slate"><span class="warning-text-dot"></span><div class="warning-text-content"><span class="warning-text-title">Stop If It Stops Being Fun</span><span class="warning-text-desc">If gaming starts affecting your work, health, or relationships, stop immediately and seek professional guidance.</span></div></div>
+</div>
+</div>
+
+</section>
+
+<section id="detailView" class="detail-view"></section>
+<section id="infoView" class="info-section"></section>
+</main>
+
+<nav class="bottom-nav" id="bottomNav">
+<button class="bottom-nav-item active" data-nav="home">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+Home
+</button>
+<button class="bottom-nav-item" data-nav="about">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+About
+</button>
+<button class="bottom-nav-item" data-nav="contact">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+Contact
+</button>
+<button class="bottom-nav-item" data-nav="disclaimer">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+Disclaimer
+</button>
+</nav>
+
+<script>
+(function(){
+const APPS=[
+{id:1,name:'YONO NEW APP',image:'https://i.ibb.co/0RZPw4wH/Screenshot-20260814-093236.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹40',withdraw:'₹100',category:'yono'},
+{id:2,name:'567 SLOTS',image:'https://i.ibb.co/QWVBtNG/Screenshot-20260814-045334.jpg',url:'https://join567slots0.com/?code=4NYF487URJ6&t=1781505684',bonus:'₹50',withdraw:'₹150',category:'slots'},
+{id:3,name:'SAGA SLOTS',image:'https://i.ibb.co/k20yYCYZ/Screenshot-20260814-045747.jpg',url:'https://www.sagaslots5.com/?code=0QHJSERZYMV&t=1781505813',bonus:'₹45',withdraw:'₹200',category:'slots'},
+{id:4,name:'GOOD SLOTS',image:'https://i.ibb.co/Hpk3dp9X/Screenshot-20260814-053030.jpg',url:'https://7sharegoodslots.vip?pid=320806209&channel=2010001&t=pdd2&pkg=com.1',bonus:'₹40',withdraw:'₹180',category:'slots'},
+{id:5,name:'YONO GAMES',image:'https://i.ibb.co/Gf0fxYQ4/Screenshot-20260814-040510.jpg',url:'https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209',bonus:'₹60',withdraw:'₹300',category:'yono'},
+{id:6,name:'TEEN PATTI GOLD',image:'https://i.ibb.co/m5sHK3ys/Screenshot-20260814-052420.jpg',url:'https://www.earntp.com/gold/jm9n7r',bonus:'₹40',withdraw:'₹120',category:'teenpatti'},
+{id:7,name:'JAIHO 91',image:'https://i.ibb.co/bnQfcCV/Screenshot-20260814-045233.jpg',url:'https://jaiho91bonus.vip/?code=C42T99ZQHAT&t=1781506067',bonus:'₹55',withdraw:'₹250',category:'new'},
+{id:8,name:'RUMMY LUDO',image:'https://i.ibb.co/JR326qDL/Screenshot-20260814-050655.jpg',url:'https://rummyludoapp37.com/',bonus:'₹35',withdraw:'₹150',category:'rummy'},
+{id:9,name:'ABC RUMMY',image:'https://i.ibb.co/CKxFgdKB/Screenshot-20260814-050911.jpg',url:'https://d34i569g8ztoql.cloudfront.net/abcrummy_MeApp.apk',bonus:'₹50',withdraw:'₹200',category:'rummy'},
+{id:10,name:'RUMMY 91',image:'https://i.ibb.co/ymwjhMwy/Screenshot-20260814-051214.jpg',url:'https://d16sfv4ssrmnvt.cloudfront.net/rummy91_AGENT.apk',bonus:'₹55',withdraw:'₹220',category:'rummy'},
+{id:11,name:'LOVE RUMMY',image:'https://i.ibb.co/FkzpZCrk/Screenshot-20260814-051426.jpg',url:'https://d34i569g8ztoql.cloudfront.net/loverummy_App.apk',bonus:'₹45',withdraw:'₹180',category:'rummy'},
+{id:12,name:'SPIN CRUSH',image:'https://i.ibb.co/M5cLBLc1/Screenshot-20260814-034836.jpg',url:'https://d292swwe9zki3u.cloudfront.net/spincrush_freecash.apk',bonus:'₹30',withdraw:'₹100',category:'spin'},
+{id:13,name:'TOP RUMMY',image:'https://i.ibb.co/9mwHZbCp/Screenshot-20260814-051751.jpg',url:'https://th7.my/BY1JWS/3gvute0',bonus:'₹60',withdraw:'₹300',category:'rummy'},
+{id:14,name:'Hello Rummy',image:'https://i.ibb.co/ksXtjTVp/Screenshot-20260814-052023.jpg',url:'https://www.earntp.com/gold/jm9n7r',bonus:'₹40',withdraw:'₹150',category:'rummy'},
+{id:15,name:'RUMMY 365',image:'https://i.ibb.co/jvpGswXD/Screenshot-20260814-052223.jpg',url:'https://join567slots0.com/?code=4NYF487URJ6&t=1781505684',bonus:'₹50',withdraw:'₹200',category:'rummy'},
+{id:16,name:'TEEN PATTI MASTER',image:'https://i.ibb.co/cXkXTDPR/Screenshot-20260814-052628.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹40',withdraw:'₹100',category:'teenpatti'},
+{id:17,name:'YONO RUMMY',image:'https://i.ibb.co/b5THXzC7/Screenshot-20260814-040920.jpg',url:'https://yonorummy043.com/?code=VIPYQC5EE9X&t=1781107758',bonus:'₹60',withdraw:'₹300',category:'yono'},
+{id:18,name:'SLOTS WINNER',image:'https://i.ibb.co/wNT5cZ1k/Screenshot-20260814-041656.jpg',url:'https://slotswinneri.com/?code=PGVC6CBNF53&t=1781107393',bonus:'₹45',withdraw:'₹200',category:'slots'},
+{id:19,name:'Diwa Slot',image:'https://i.ibb.co/2zv2Nyy/Screenshot-20260814-053408.jpg',url:'https://sharediwaslot1.vip?pid=483455673&channel=2010002&t=pdd2&pkg=com.diwaslotwhl.app',bonus:'₹55',withdraw:'₹250',category:'slots'},
+{id:20,name:'GOGO RUMMY',image:'https://i.ibb.co/RTwyQ4tF/Screenshot-20260814-053625.jpg',url:'https://www.gogorummyagent.com/?code=V4UTQA2VYMQ&t=1781196694',bonus:'₹50',withdraw:'₹200',category:'rummy'},
+{id:21,name:'JOY RUMMY',image:'https://i.ibb.co/SCc42Cp/Screenshot-20260814-053827.jpg',url:'https://www.joyrummymax.com/?code=J5KFTAWJ9X5&t=1781198100',bonus:'₹60',withdraw:'₹300',category:'rummy'},
+{id:22,name:'SPIN GOLD',image:'https://i.ibb.co/0yd0J3dy/Screenshot-20260814-030656.jpg',url:'https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828',bonus:'₹40',withdraw:'₹150',category:'spin'},
+{id:23,name:'BINGO 101',image:'https://i.ibb.co/Xk2wP9Nk/Screenshot-20260814-034121.jpg',url:'https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828',bonus:'₹30',withdraw:'₹100',category:'spin'},
+{id:24,name:'YES SPIN',image:'https://i.ibb.co/60hFLZzw/Screenshot-20260814-054324.jpg',url:'https://www.yesspineee.com/?code=47TXJTLU5YY&t=1781198907',bonus:'₹35',withdraw:'₹120',category:'spin'},
+{id:25,name:'YONO ARCADE',image:'https://i.ibb.co/R4QMbqBt/Screenshot-20260814-040720.jpg',url:'https://yonoarcadeapk9.com/?code=96LNEL9FQXZ&t=1781199006',bonus:'₹65',withdraw:'₹350',category:'yono'},
+{id:26,name:'SVIP 777',image:'https://i.ibb.co/MyQvt1R2/Screenshot-20260814-054554.jpg',url:'https://www.svip777.life?pid=297924008&channel=2050001&t=pdd2&pkg=com.svip777.h5',bonus:'₹70',withdraw:'₹400',category:'new'},
+{id:27,name:'OK RUMMY',image:'https://i.ibb.co/xKhB5qzg/Screenshot-20260814-054736.jpg',url:'https://www.okrummy22.com/?code=H2GU92WUXXA&t=1781199220',bonus:'₹50',withdraw:'₹200',category:'rummy'},
+{id:28,name:'HINDI 777',image:'https://i.ibb.co/pvtCPtTT/Screenshot-20260814-055304.jpg',url:'https://www.hindi777agent5.com/?code=7LFFR8WPHEG&t=1781199307',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:29,name:'BET 213',image:'https://i.ibb.co/6c3k7wdG/Screenshot-20260814-055545.jpg',url:'https://www.bet213.rocks/?code=2QTKPV4BYDH&t=1781199576',bonus:'₹45',withdraw:'₹180',category:'other'},
+{id:30,name:'BOSS RUMMY',image:'https://i.ibb.co/jvwscPDf/Screenshot-20260814-055812.jpg',url:'https://www.bossrummyy.com/?code=LSHTVUZE1NR&t=1781429504',bonus:'₹55',withdraw:'₹250',category:'rummy'},
+{id:31,name:'YONO 777',image:'https://i.ibb.co/v4G1fQtr/Screenshot-20260814-060203.jpg',url:'https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388',bonus:'₹65',withdraw:'₹350',category:'yono'},
+{id:32,name:'Diwa VIP',image:'https://i.ibb.co/6RQ2tGnw/Screenshot-20260814-060417.jpg',url:'https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388',bonus:'₹70',withdraw:'₹400',category:'new'},
+{id:33,name:'Diwa 777',image:'https://i.ibb.co/hFNKBdvq/Screenshot-20260814-060707.jpg',url:'https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:34,name:'INR RUMMY',image:'https://i.ibb.co/hJpHMvPg/Screenshot-20260814-061018.jpg',url:'https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106',bonus:'₹55',withdraw:'₹250',category:'rummy'},
+{id:35,name:'MBM BET',image:'https://i.ibb.co/0j53Gb5W/Screenshot-20260814-042359.jpg',url:'https://www.mbmbet3.com/?code=GD3H3VA6YK5&t=1784297830',bonus:'₹50',withdraw:'₹200',category:'other'},
+{id:36,name:'GOA SPIN',image:'https://i.ibb.co/jkQ5z96x/Screenshot-20260814-033551.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹35',withdraw:'₹120',category:'spin'},
+{id:37,name:'777 GAME',image:'https://i.ibb.co/tMJ0L7L8/1786658176260.jpg',url:'https://t.me/yonogamestite',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:38,name:'TEEN PATTI',image:'https://i.ibb.co/fzmMFV0F/Screenshot-20260814-061532.jpg',url:'https://www.earntp.com/gold/jm9n7r',bonus:'₹40',withdraw:'₹120',category:'teenpatti'},
+{id:39,name:'All YONO GAMES',image:'https://i.ibb.co/cKc56vJj/Screenshot-20260814-061719.jpg',url:'https://www.earntp.com/gold/jm9n7r',bonus:'₹65',withdraw:'₹350',category:'yono'},
+{id:40,name:'NEW YONO GAMES',image:'https://i.ibb.co/R4hkwzbW/Screenshot-20260814-062237.jpg',url:'https://t.me/yonogamestite',bonus:'₹70',withdraw:'₹400',category:'yono'},
+{id:41,name:'YONO APPS',image:'https://i.ibb.co/DfQgSYrP/Screenshot-20260814-061950.jpg',url:'https://t.me/yonogamestite',bonus:'₹60',withdraw:'₹300',category:'yono'},
+{id:42,name:'SPIN WINNER',image:'https://i.ibb.co/PZNRbCwk/Screenshot-20260814-034801.jpg',url:'https://www.yesspineee.com/?code=47TXJTLU5YY&t=1781198907',bonus:'₹40',withdraw:'₹150',category:'spin'},
+{id:43,name:'YONO All GAMES',image:'https://i.ibb.co/TMJwF88r/Screenshot-20260814-031654.jpg',url:'https://diwavipshare.cc?pid=428256719&channel=2050001&t=pdd2&pkg=com.diwavip.h5',bonus:'₹65',withdraw:'₹350',category:'yono'},
+{id:44,name:'SPIN LUCKY',image:'https://i.ibb.co/Q7YCZLWP/Screenshot-20260814-041943.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹35',withdraw:'₹120',category:'spin'},
+{id:45,name:'MAX RUMMY',image:'https://i.ibb.co/xKH8Zz6C/Screenshot-20260814-032014.jpg',url:'https://www.maxrummy66.com/?code=QUMWTJCMZ5N&t=1784912540',bonus:'₹60',withdraw:'₹300',category:'rummy'},
+{id:46,name:'RANI SLOTS',image:'https://i.ibb.co/jZMq58Pc/Screenshot-20260814-063312.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹45',withdraw:'₹200',category:'slots'},
+{id:47,name:'1GO PLUS',image:'https://i.ibb.co/PzV7FRHT/Screenshot-20260814-063537.jpg',url:'https://1go.plus/4h91q',bonus:'₹50',withdraw:'₹200',category:'other'},
+{id:48,name:'RUMMY ULTRA',image:'https://i.ibb.co/pjWGb0ty/Screenshot-20260814-034858.jpg',url:'https://www.rummyultraa.com/?dl=5hrw1p',bonus:'₹55',withdraw:'₹250',category:'rummy'},
+{id:49,name:'789 JACKPOTS',image:'https://i.ibb.co/5WV6Z60y/Screenshot-20260814-063848.jpg',url:'https://join789jackpots1.com/?code=XYUGRMBA44Y&t=1784907944',bonus:'₹60',withdraw:'₹300',category:'slots'},
+{id:50,name:'JAIHO WIN',image:'https://i.ibb.co/qFmG8b9q/Screenshot-20260814-041444.jpg',url:'https://www.jaihowin12.com/?code=1XNCQVU3XA5&t=1784914695',bonus:'₹55',withdraw:'₹250',category:'new'},
+{id:51,name:'SLOTS SPIN',image:'https://i.ibb.co/0pSskjBY/Screenshot-20260814-032904.jpg',url:'https://slotsspinq.com/?code=XJB6LEBYG8R&t=1784908638',bonus:'₹40',withdraw:'₹150',category:'slots'},
+{id:52,name:'NETA VIP',image:'https://i.ibb.co/yBKhXW7S/Screenshot-20260814-032933.jpg',url:'https://neta3.vip/?code=DR0V69R7BGJ&t=1784915088',bonus:'₹70',withdraw:'₹400',category:'new'},
+{id:53,name:'JAIHO 777 VIP',image:'https://i.ibb.co/xVcCbWY/1786669966384.jpg',url:'https://jaiho777agent.com?code=98X2D8Y3QGD&t=1784915217',bonus:'₹75',withdraw:'₹450',category:'new'},
+{id:54,name:'DHAN GAME',image:'https://i.ibb.co/JRshnS3z/Screenshot-20260814-033641.jpg',url:'https://www.dhanwin365.com/?code=47TWH18LDKB&t=1784915487',bonus:'₹50',withdraw:'₹200',category:'other'},
+{id:55,name:'DIWA GAME',image:'https://i.ibb.co/zVvgvPpL/Screenshot-20260814-040014.jpg',url:'https://diwagameshare.club?pid=345550936&channel=2010002&t=pdd2&pkg=com.diwagamewhx.app',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:56,name:'BET 54 GAMES',image:'https://i.ibb.co/zWrDwLPt/Screenshot-20260814-033239.jpg',url:'https://www.earntp.com/gold/jm9n7r',bonus:'₹45',withdraw:'₹180',category:'other'},
+{id:57,name:'ALL YONO APPS',image:'https://i.ibb.co/Qq9Zn7f/Screenshot-20260814-064907.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹65',withdraw:'₹350',category:'yono'},
+{id:58,name:'T989 APPS',image:'https://i.ibb.co/bR8bB9qn/Screenshot-20260814-041927.jpg',url:'https://www.earntp.com/gold/jm9n7r',bonus:'₹50',withdraw:'₹200',category:'other'},
+{id:59,name:'765 CLUB',image:'https://i.ibb.co/LDF3sXTx/Screenshot-20260814-065302.jpg',url:'https://765club.com/?id=637056077',bonus:'₹55',withdraw:'₹250',category:'new'},
+{id:60,name:'MKM BET APK',image:'https://i.ibb.co/wZxK5XGr/Screenshot-20260814-032720.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹45',withdraw:'₹180',category:'other'},
+{id:61,name:'YN 777',image:'https://i.ibb.co/v6GbHJ95/Screenshot-20260814-040445.jpg',url:'https://www.y729.com/?code=4SWD98JQ8LU&t=1785588919',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:62,name:'SPIN 777',image:'https://i.ibb.co/ccGr69gJ/Screenshot-20260814-033520.jpg',url:'https://spin777cc.com/?code=7V9ZG91PA4R&t=1785589035',bonus:'₹40',withdraw:'₹150',category:'spin'},
+{id:63,name:'RUMMY 888',image:'https://i.ibb.co/bMgzZNPd/Screenshot-20260814-033315.jpg',url:'https://rummy888vip43.com/?code=7WTEEW87DPM&t=1785589166',bonus:'₹60',withdraw:'₹300',category:'rummy'},
+{id:64,name:'RUMMY 77',image:'https://i.ibb.co/BXKxwDX/Screenshot-20260814-035041.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹50',withdraw:'₹200',category:'rummy'},
+{id:65,name:'MQM BET',image:'https://i.ibb.co/nqbdMSST/Screenshot-20260814-035011.jpg',url:'https://4mqmshare.vip?pid=486385025&channel=2010001&pkg=com.mqm.bet',bonus:'₹55',withdraw:'₹250',category:'other'},
+{id:66,name:'MAHA GAMES',image:'https://i.ibb.co/nNmMgR25/Screenshot-20260814-034026.jpg',url:'https://good-mahagames.com/?code=J24U9DHRWR8&t=1785589525',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:67,name:'IND RUMMY',image:'https://i.ibb.co/BKSZbZMt/Screenshot-20260814-091502.jpg',url:'https://www.earntp.com/m/jm9n7r',bonus:'₹50',withdraw:'₹200',category:'rummy'},
+{id:68,name:'Hi RUMMY',image:'https://i.ibb.co/27r99T47/Screenshot-20260814-091836.jpg',url:'https://joinhirummy.net/?code=RX35XQBCPC9&t=1785590074',bonus:'₹55',withdraw:'₹250',category:'rummy'},
+{id:69,name:'JAIHO SPIN',image:'https://i.ibb.co/rfc5rdpv/Screenshot-20260814-041105.jpg',url:'https://18jaihospinpro.com/?code=U3VDD22Q&t=1785590326',bonus:'₹45',withdraw:'₹180',category:'spin'},
+{id:70,name:'JAIHO RUMMY',image:'https://i.ibb.co/TD7mQ4Qw/Screenshot-20260814-035539.jpg',url:'https://jaihoclud.com/?code=E744HJRF6W7&t=1785590487',bonus:'₹55',withdraw:'₹250',category:'rummy'},
+{id:71,name:'YONO SLOTS',image:'https://i.ibb.co/TDF7VJ1w/Screenshot-20260814-092416.jpg',url:'https://www.yonoslotsm.com/?code=KU899FV2GFY&t=1785590595',bonus:'₹65',withdraw:'₹350',category:'yono'},
+{id:72,name:'Diwa Win',image:'https://i.ibb.co/XfXsfDrh/Screenshot-20260814-032430.jpg',url:'https://diwawinshare.tech?pid=528544053&channel=2010002&pkg=com.diwawin002.app',bonus:'₹60',withdraw:'₹300',category:'new'},
+{id:73,name:'RUMBLE RUMMY',image:'https://i.ibb.co/S7VgC8Cr/Screenshot-20260814-035804.jpg',url:'https://www.rumblerummy111.vip/?code=VX9H1GEM5EL&t=1785590916',bonus:'₹55',withdraw:'₹250',category:'rummy'},
+{id:74,name:'YONO VIP',image:'https://i.ibb.co/zTH4HqXT/Screenshot-20260814-041418.jpg',url:'https://uonovipfast.com/?code=3crTKB9H7ND&t=1785591034',bonus:'₹70',withdraw:'₹400',category:'yono'}
+];
+
+const DIWA_BANNERS=[
+  {name:'DIWA ACE',url:'https://diwawinshare.tech?pid=528544053&channel=2010002&pkg=com.diwawin002.app',label:'DIWAWALAGAME.COM',bonus:'₹60',withdraw:'₹300'},
+  {name:'DIWA LUCKY',url:'https://sharediwaslot1.vip?pid=483455673&channel=2010002&t=pdd2&pkg=com.diwaslotwhl.app',label:'DIWAWALAGAME.COM',bonus:'₹55',withdraw:'₹250'},
+  {name:'DIWA KING',url:'https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388',label:'DIWAWALAGAME.COM',bonus:'₹70',withdraw:'₹400'},
+  {name:'DIWA PLAY',url:'https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app',label:'DIWAWALAGAME.COM',bonus:'₹60',withdraw:'₹300'},
+  {name:'DIWA WIN',url:'https://diwagameshare.club?pid=345550936&channel=2010002&t=pdd2&pkg=com.diwagamewhx.app',label:'DIWAWALAGAME.COM',bonus:'₹60',withdraw:'₹300'}
+];
+
+const state={category:'all',showingDetail:false,showingInfo:false,diwaIndex:0,diwaTimer:null};
+
+const homeView=document.getElementById('homeView');
+const detailView=document.getElementById('detailView');
+const infoView=document.getElementById('infoView');
+const appListContainer=document.getElementById('appListContainer');
+const featuredStrip=document.getElementById('featuredStrip');
+const featuredInfoTags=document.getElementById('featuredInfoTags');
+const menuScroll=document.getElementById('menuScroll');
+const drawer=document.getElementById('drawer');
+const drawerOverlay=document.getElementById('drawerOverlay');
+const menuToggle=document.getElementById('menuToggle');
+const drawerClose=document.getElementById('drawerClose');
+const bottomNav=document.getElementById('bottomNav');
+const homeCountLabel=document.getElementById('homeCountLabel');
+const diwaTrack=document.getElementById('diwaTrack');
+const diwaDots=document.getElementById('diwaDots');
+const diwaPrev=document.getElementById('diwaPrev');
+const diwaNext=document.getElementById('diwaNext');
+const diwaCarousel=document.getElementById('diwaCarousel');
+
+const FEATURED_IDS=[71,72,73,74];
+
+const icons={
+giftRed:'<svg viewBox="0 0 24 24" fill="none" stroke="#e53935" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M12 7v14"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+walletGreen:'<svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/></svg>',
+downloadSmall:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+downloadBig:'<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+downloadBox:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+star:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+size:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+giftBox:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M12 7v14"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+about:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>',
+contact:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+disclaimer:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+privacy:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+info:'<svg viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+};
+
+/* ---------- DIWA CAROUSEL LOGIC (3-ZONE) ---------- */
+function renderDiwa(){
+  let slidesHtml='';
+  DIWA_BANNERS.forEach((b,i)=>{
+    slidesHtml+=`
+      <div class="diwa-slide${i===0?' active':''}" data-index="${i}">
+        <div class="diwa-logo" aria-label="${b.name} atomic logo">
+          <svg class="diwa-atomic-svg" viewBox="0 0 84 84" aria-hidden="true">
+            <defs>
+              <linearGradient id="diwaAtomicGradient-${i}" x1="0" y1="0" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#00e5ff"/>
+                <stop offset=".25" stop-color="#7c3aed"/>
+                <stop offset=".5" stop-color="#ff2fb3"/>
+                <stop offset=".75" stop-color="#ffd400"/>
+                <stop offset="1" stop-color="#00e5ff"/>
+              </linearGradient>
+              <filter id="diwaAtomicGlow-${i}" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="2.1" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <!-- One continuous four-corner atomic line. Only this frame glows; the logo stays clean. -->
+            <path class="diwa-atomic-frame" d="M28 4H19C10.7 4 4 10.7 4 19V28M56 4H65C73.3 4 80 10.7 80 19V28M80 56V65C80 73.3 73.3 80 65 80H56M28 80H19C10.7 80 4 73.3 4 65V56" style="stroke:url(#diwaAtomicGradient-${i});filter:url(#diwaAtomicGlow-${i})"/>
+          </svg>
+          <div class="diwa-logo-mark" aria-label="${b.name} logo">
+            <div>
+              <span>${b.name}</span>
+              <span class="logo-accent">GAME LOGO</span>
+            </div>
+          </div>
+        </div>
+        <div class="diwa-info">
+          <div class="diwa-name">${b.name}</div>
+          <div class="diwa-url">${b.label}</div>
+          <div class="diwa-badges">
+            <span class="diwa-badge bonus">Bonus ${b.bonus}</span>
+            <span class="diwa-badge withdraw">Withdraw ${b.withdraw}</span>
+          </div>
+          <a class="diwa-download" href="${b.url}" target="_blank" rel="noopener">
+            ${icons.downloadSmall} DOWNLOAD
+          </a>
+        </div>
+      </div>`;
+  });
+  diwaTrack.innerHTML=slidesHtml;
+
+  let dotsHtml='';
+  DIWA_BANNERS.forEach((_,i)=>{
+    dotsHtml+=`<span class="diwa-dot${i===0?' active':''}" data-index="${i}"></span>`;
+  });
+  diwaDots.innerHTML=dotsHtml;
+}
+
+function setDiwaIndex(i, direction){
+  const total=DIWA_BANNERS.length;
+  const nextIndex=((i%total)+total)%total;
+  const slides=diwaTrack.querySelectorAll('.diwa-slide');
+  const dots=diwaDots.querySelectorAll('.diwa-dot');
+  if(!slides.length)return;
+  if(state.diwaAnimating)return;
+  if(state.diwaIndex===nextIndex && slides[nextIndex]?.classList.contains('active')){dots.forEach((d,idx)=>d.classList.toggle('active',idx===nextIndex));return;}
+  const oldIndex=state.diwaIndex;
+  const current=slides[oldIndex], next=slides[nextIndex];
+  if(!current || !next){state.diwaIndex=nextIndex;return;}
+  state.diwaAnimating=true;
+  /* One-by-one horizontal carousel: next logo enters from RIGHT to CENTER;
+     previous logo enters from LEFT to CENTER. The active logo leaves in the
+     opposite direction. Every logo keeps the same fixed size/position at center. */
+  slides.forEach(s=>s.classList.remove('enter-left','enter-right','leave-left','leave-right'));
+  const forward = direction >= 0;
+  /* Keep current slide centered until its exit starts. Put the incoming slide
+     just outside the matching side, then animate both at the same time. */
+  next.classList.add(forward ? 'enter-right' : 'enter-left');
+  current.classList.add(forward ? 'leave-left' : 'leave-right');
+  /* Force the browser to commit both starting positions before moving. */
+  void next.offsetWidth;
+  next.classList.add('active');
+  dots.forEach((d,idx)=>d.classList.toggle('active',idx===nextIndex));
+  state.diwaIndex=nextIndex;
+  window.setTimeout(()=>{
+    slides.forEach((s,idx)=>{
+      s.className=idx===nextIndex?'diwa-slide active':'diwa-slide';
+    });
+    state.diwaAnimating=false;
+  },960);
+}
+
+function startDiwaAutoplay(){
+  stopDiwaAutoplay();
+  state.diwaTimer=setInterval(()=>{
+    if(!state.diwaAnimating)setDiwaIndex(state.diwaIndex+1,1);
+  },6500);
+}
+function stopDiwaAutoplay(){
+  if(state.diwaTimer){clearInterval(state.diwaTimer);state.diwaTimer=null;}
+}
+
+function setupDiwa(){
+  renderDiwa();
+  setDiwaIndex(0);
+  startDiwaAutoplay();
+
+  diwaPrev.addEventListener('click',()=>{if(state.diwaAnimating)return;setDiwaIndex(state.diwaIndex-1,-1);startDiwaAutoplay();});
+  diwaNext.addEventListener('click',()=>{if(state.diwaAnimating)return;setDiwaIndex(state.diwaIndex+1,1);startDiwaAutoplay();});
+
+  diwaDots.addEventListener('click',(e)=>{
+    const dot=e.target.closest('.diwa-dot');
+    if(!dot)return;
+    if(state.diwaAnimating)return; const target=parseInt(dot.dataset.index); setDiwaIndex(target,target>state.diwaIndex?1:-1);
+    startDiwaAutoplay();
+  });
+
+  let startX=0,startY=0,isDown=false;
+  diwaCarousel.addEventListener('touchstart',(e)=>{
+    if(!e.touches[0])return;
+    startX=e.touches[0].clientX;
+    startY=e.touches[0].clientY;
+    isDown=true;
+    stopDiwaAutoplay();
+  },{passive:true});
+
+  diwaCarousel.addEventListener('touchend',(e)=>{
+    if(!isDown)return;
+    isDown=false;
+    const t=e.changedTouches&&e.changedTouches[0];
+    if(!t){startDiwaAutoplay();return;}
+    const dx=t.clientX-startX;
+    const dy=t.clientY-startY;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){
+      if(!state.diwaAnimating){
+        if(dx<0) setDiwaIndex(state.diwaIndex+1,1);
+        else setDiwaIndex(state.diwaIndex-1,-1);
+      }
+    }
+    startDiwaAutoplay();
+  });
+
+  diwaCarousel.addEventListener('mouseenter',stopDiwaAutoplay);
+  diwaCarousel.addEventListener('mouseleave',startDiwaAutoplay);
+}
+
+/* ---------- HOME RENDER ---------- */
+function renderAppCard(app){
+  return `
+    <div class="app-card" data-app-id="${app.id}">
+      <div class="app-icon">
+        <img src="${app.image}" alt="${app.name}" loading="eager" decoding="async" fetchpriority="high" width="72" height="72">
+      </div>
+      <div class="app-info">
+        <div class="app-name">${app.name}</div>
+        <div class="badge-row badge-red">${icons.giftRed}<span>Bonus ${app.bonus}</span></div>
+        <div class="badge-row badge-green">${icons.walletGreen}<span>Withdraw ${app.withdraw}</span></div>
+      </div>
+      <button class="download-btn-sm" data-app-id="${app.id}" data-url="${app.url}">
+        ${icons.downloadSmall} DOWNLOAD
+      </button>
+    </div>
+  `;
+}
+
+function renderFeaturedStrip(){
+  const featured=APPS.filter(a=>FEATURED_IDS.includes(a.id));
+  let html='';
+  featured.forEach(app=>{
+    html+=`
+      <div class="featured-item" data-app-id="${app.id}">
+        <div class="featured-item-icon"><img src="${app.image}" alt="${app.name}" loading="eager" decoding="async"></div>
+        <div class="featured-item-name">${app.name}</div>
+        <div class="featured-item-bonus">Bonus ${app.bonus}</div>
+      </div>`;
+  });
+  featuredStrip.innerHTML=html;
+  featuredStrip.querySelectorAll('.featured-item').forEach(item=>{
+    item.addEventListener('click',function(){
+      openAppDetail(parseInt(this.dataset.appId));
+    });
+  });
+}
+
+function renderFeaturedInfoTags(){
+  // Intentionally empty: short tag chips are removed from the site.
+}
+
+function renderHome(category){
+  state.category=category||'all';
+  let filtered=APPS;
+  if(state.category!=='all') filtered=APPS.filter(app=>app.category===state.category);
+
+  homeCountLabel.textContent=filtered.length+' Apps';
+
+  if(filtered.length===0){
+    appListContainer.innerHTML='<p style="text-align:center;color:var(--text-secondary);padding:40px 0;">No apps in this category.</p>';
+    renderFeaturedStrip();
+    renderFeaturedInfoTags();
+    return;
+  }
+
+  let html='';
+  filtered.forEach(app=>{html+=renderAppCard(app);});
+  appListContainer.innerHTML=html;
+
+  document.querySelectorAll('.app-card').forEach(card=>{
+    card.addEventListener('click',function(e){
+      if(e.target.closest('.download-btn-sm'))return;
+      openAppDetail(parseInt(this.dataset.appId));
+    });
+  });
+  document.querySelectorAll('.app-card .download-btn-sm').forEach(btn=>{
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      openAppDetail(parseInt(this.dataset.appId));
+    });
+  });
+
+  renderFeaturedStrip();
+  renderFeaturedInfoTags();
+}
+
+/* ---------- DETAIL VIEW ---------- */
+function renderDetail(appId){
+  const app=APPS.find(a=>a.id===appId);
+  if(!app)return;
+
+  const infoMap={
+    'YONO VIP':{tagline:'The ultimate VIP experience with the highest rewards.',howToPlay:'Download the APK, register with your mobile number, and use VIP code to unlock premium tables and exclusive bonuses.',special:'VIP-only tables, higher withdrawal limits, dedicated support, and priority payouts.',platform:'Android APK (YONO VIP Series)'},
+    'Diwa Win':{tagline:'Premium Diwa Win with instant cash rewards.',howToPlay:'Install the app, sign up, and claim your exclusive Diwa welcome bonus. Play and win real cash.',special:'Exclusive Diwa bonuses, fast withdrawals, and premium customer support.',platform:'Android APK (Diwa Series)'},
+    'RUMBLE RUMMY':{tagline:'Fast, thrilling rummy action with real cash prizes.',howToPlay:'Download Rumble Rummy, register, and join a table. Play 13-card rummy and win real money.',special:'Rumble mode with special rummy variants, big bonuses, and instant UPI withdrawals.',platform:'Android APK (Rummy Series)'},
+    'YONO SLOTS':{tagline:'Spin the reels and win big with YONO Slots.',howToPlay:'Open the app, choose your slot, set your bet, and spin to win. Every spin can bring big rewards.',special:'Hundreds of themed slots, free spins, and progressive jackpots.',platform:'Android APK (YONO Slots)'}
+  };
+  const info=infoMap[app.name]||{
+    tagline:'Play '+app.name+' and win real cash rewards.',
+    howToPlay:'Download '+app.name+', register with your mobile number, claim your welcome bonus, and start playing instantly.',
+    special:'Exclusive welcome bonus of '+app.bonus+' and withdrawal options up to '+app.withdraw+'.',
+    platform:'Android APK · Real-money gaming'
+  };
+
+  const gameRelatedTags=[
+    {label:app.name,cls:''},{label:'Real Money Game',cls:'alt'},{label:'Skill Based',cls:'alt2'},{label:'Android APK',cls:'alt3'},{label:'Bonus Available',cls:'alt4'},
+    {label:'Fast Withdrawal',cls:''},{label:'Mobile Game',cls:'alt'},{label:'Instant Play',cls:'alt2'},{label:'Verified Link',cls:'alt3'},{label:'Trending Game',cls:'alt4'},
+    {label:'Popular in India',cls:''},{label:'Safe Download',cls:'alt'},{label:'New Version',cls:'alt2'},{label:'Multiplayer',cls:'alt3'},{label:'Live Cash Tables',cls:'alt4'},
+    {label:'Secure Payments',cls:''},{label:'Daily Bonus',cls:'alt'},{label:'Tournaments',cls:'alt2'},{label:'VIP Rewards',cls:'alt3'},{label:'Refer & Earn',cls:'alt4'},
+    {label:'No Hidden Fees',cls:''},{label:'24/7 Support',cls:'alt'},{label:'Low Data Usage',cls:'alt2'},{label:'Smooth Gameplay',cls:'alt3'},{label:'HD Graphics',cls:'alt4'},
+    {label:'Instant Withdrawal',cls:''},{label:'Daily Rewards',cls:'alt'},{label:'Cash Prizes',cls:'alt2'},{label:'Real Players',cls:'alt3'},{label:'India Friendly',cls:'alt4'},
+    {label:'UPI Supported',cls:''},{label:'Best Bonus',cls:'alt'},{label:'Instant Signup',cls:'alt2'},{label:'Fast Payouts',cls:'alt3'},{label:'Trusted Platform',cls:'alt4'}
+  ];
+
+  // Unique per-game details: stable values derived from the app id, so every
+  // details page has its own size, rating, update label, version and count.
+  const seed=Number(app.id)||1;
+  const sizeMb=28+((seed*13)%35);
+  const rating=(4.1+(((seed*7)%9)/10)).toFixed(1);
+  const fullStars=Math.floor(Number(rating));
+  const halfStar=Number(rating)-fullStars>=0.5;
+  const downloads=64200+((seed*1497)%9800);
+  const version=`${1+(seed%3)}.${(seed*7)%10}.${(seed*13)%100}`;
+  const updateDay=String(1+((seed*5)%28)).padStart(2,'0');
+  const updateMonth=String(1+((seed*3)%9)).padStart(2,'0');
+  const starSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.7 5.47 6.04.88-4.37 4.26 1.03 6.02L12 17.0l-5.4 2.83 1.03-6.02L3.26 9.55l6.04-.88L12 3.2z"/></svg>';
+  const starsHtml=Array.from({length:5},(_,i)=>{
+    const active=i<fullStars || (i===fullStars && halfStar);
+    return `<span style="display:inline-flex;opacity:${active?1:.28}">${starSvg}</span>`;
+  }).join('');
+  const updateIcon='<svg class="detail-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-13.65-5.65L4 7.7"/><path d="M4 4v3.7h3.7"/><path d="M4 13a8 8 0 0 0 13.65 5.65L20 16.3"/><path d="M20 20v-3.7h-3.7"/></svg>';
+  const fileIcon='<svg class="detail-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h16v12H4z"/><path d="M3 7.5l2-3h6l1.5 3H21"/><path d="M9 11h6"/></svg>';
+
+  detailView.innerHTML=`
+    <button class="back-button" id="backButton">${icons.back} Back to All Games</button>
+    <h1 class="detail-title-mobile">${app.name}</h1>
+    <div class="detail-hero">
+      <div class="detail-hero-left">
+        <div class="detail-logo-wrap"><div class="detail-logo"><img src="${app.image}" alt="${app.name}" width="250" height="250" loading="eager" decoding="async"></div></div>
+        <div class="detail-rating" aria-label="Rating ${rating} out of 5"><span class="detail-rating-stars">${starsHtml}</span><span class="detail-rating-score">${rating}</span></div>
+        <div class="detail-download-count" aria-label="63,696 downloads">${icons.downloadSmall}<span>63,696</span></div>
+      </div>
+      <div class="detail-side-meta">
+        <div class="detail-meta-box detail-meta-updated">
+          <div class="detail-meta-label">${updateIcon}<span>Updated Version</span></div>
+          <div class="detail-meta-value">${version}</div>
+        </div>
+        <div class="detail-meta-box detail-meta-size">
+          <div class="detail-meta-label">${fileIcon}<span>APK Size</span></div>
+          <div class="detail-meta-value">${sizeMb} MB</div>
+        </div>
+        <div class="detail-meta-box detail-meta-bonus">
+          <div class="detail-meta-label">${icons.giftBox}<span>Bonus</span></div>
+          <div class="detail-meta-value">${app.bonus}</div>
+        </div>
+        <div class="detail-meta-box detail-meta-withdrawal">
+          <div class="detail-meta-label">${icons.walletGreen}<span>Withdrawal</span></div>
+          <div class="detail-meta-value">${app.withdraw}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-action-bar" aria-label="Game actions">
+      <div style="display:flex;flex-direction:column;align-items:center;width:100%">
+        <a class="big-download-btn detail-download-center" href="${app.url}" target="_blank" rel="noopener noreferrer" aria-label="Download ${app.name}">
+          ${icons.downloadBig} DOWNLOAD APK
+        </a>
+      </div>
+    </div>
+
+    <h1 class="detail-name">${app.name}</h1>
+
+    <div class="game-info-card">
+      <div class="game-info-card-header">${icons.info}<div class="game-info-card-header-text">${app.name} — Game Information</div></div>
+      <div class="game-info-section">
+        <div class="game-info-label">About ${app.name}</div>
+        <div class="game-info-text"><strong>${app.name}</strong> is a premium Android gaming app that lets you play <strong>${app.category.toUpperCase()}</strong> games for real cash. ${info.tagline}</div>
+      </div>
+      <div class="game-info-section">
+        <div class="game-info-label">Game Description</div>
+        <div class="game-info-text">${app.name} offers a smooth, secure, and rewarding experience for players who enjoy real-money skill-based games. The app is optimized for performance on all modern Android phones and provides instant access to bonus rewards and withdrawal options. It supports fast withdrawals, secure payments, and daily bonus rewards.</div>
+      </div>
+      <div class="game-info-section">
+        <div class="game-info-label">How to Play ${app.name}</div>
+        <div class="game-info-text">${info.howToPlay}</div>
+      </div>
+      <div class="game-info-section">
+        <div class="game-info-label">Special Features</div>
+        <div class="game-info-text">${info.special}</div>
+      </div>
+      <div class="game-info-section">
+        <div class="game-info-label">Bonus &amp; Withdrawal</div>
+        <div class="game-info-text">Sign up today and get a welcome bonus of <strong>${app.bonus}</strong> with withdrawal options up to <strong>${app.withdraw}</strong>. Withdrawals are processed quickly via UPI and other popular payment methods.</div>
+      </div>
+      <div class="game-info-section">
+        <div class="game-info-label">Platform &amp; Compatibility</div>
+        <div class="game-info-text">${info.platform} · Compatible with Android 5.0 and above · Works on all screen sizes.</div>
+      </div>
+    </div>
+
+    <div class="about-card">
+      <div class="about-header">${icons.about} About ${app.name}</div>
+      <p style="margin-bottom:10px;color:#2b364b;">${app.name} is part of our curated directory of trusted Android gaming apps. Key features include:</p>
+      <ul class="feature-list">
+        <li>Instant sign-up with bonus ${app.bonus}</li>
+        <li>Quick withdrawal up to ${app.withdraw}</li>
+        <li>Secure and verified download link</li>
+        <li>Compatible with all Android versions</li>
+        <li>24/7 customer support inside the app</li>
+      </ul>
+      <p style="margin:12px 0;color:#2b364b;"><strong>App details:</strong> APK Size ${sizeMb} MB · Updated Version ${version}</p>
+    </div>
+
+    <div class="other-apps-title section-title">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+      <span>Other Game Apps</span>
+    </div>
+    <div id="otherAppsContainer"></div>
+  `;
+
+  const otherApps=APPS.filter(a=>a.id!==appId);
+  let otherHtml='';
+  otherApps.forEach(o=>{otherHtml+=renderAppCard(o);});
+  document.getElementById('otherAppsContainer').innerHTML=otherHtml;
+
+  document.querySelectorAll('#otherAppsContainer .app-card').forEach(card=>{
+    card.addEventListener('click',function(e){
+      if(e.target.closest('.download-btn-sm'))return;
+      openAppDetail(parseInt(this.dataset.appId));
+    });
+  });
+  document.querySelectorAll('#otherAppsContainer .download-btn-sm').forEach(btn=>{
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      openAppDetail(parseInt(this.dataset.appId));
+    });
+  });
+
+  document.getElementById('backButton')?.addEventListener('click',showHome);
+}
+
+/* ---------- INFO SECTIONS ---------- */
+function renderInfo(section){
+  let title='',content='';
+
+  if(section==='about'){
+    title='About YONO GAMES HUB';
+    content=`
+      <div class="info-block">
+        <div class="info-block-header">${icons.about} About YONO GAMES HUB</div>
+        <p><strong>YONO GAMES HUB</strong> is a mobile-first game directory created to make it easier to browse Android game listings, compare basic app information, and open the download/details page for a selected game.</p>
+        <p>The website organizes listings into simple categories such as Rummy, Teen Patti, Slots, Spin &amp; Bingo, YONO Games, New Games, and Other Games. Each listing can show its game name, image, bonus information, withdrawal information, and a dedicated details page.</p>
+        <p>Our focus is a clean interface, fast navigation, readable information, and a consistent experience across mobile screens.</p>
+        <div class="info-tags">
+          <span class="info-tag">Game Directory</span><span class="info-tag">Mobile First</span><span class="info-tag">Android Listings</span><span class="info-tag">Simple Navigation</span><span class="info-tag">Game Categories</span><span class="info-tag">Details Pages</span><span class="info-tag">Fast Browsing</span><span class="info-tag">Clean UI</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.star} What You Can Find</div>
+        <p>Visitors can browse the available game cards, open a game details page, review the displayed app information, and follow the download button when they decide to continue to an external destination.</p>
+        <ul class="feature-list">
+          <li>Game names and original listing images</li>
+          <li>Category-based browsing</li>
+          <li>Bonus and withdrawal information displayed with each listing</li>
+          <li>Dedicated details pages with app size, version, rating and download count fields</li>
+          <li>Related game tags and additional descriptions</li>
+          <li>Mobile-friendly home, details and information pages</li>
+        </ul>
+        <div class="info-tags"><span class="info-tag">Game Search</span><span class="info-tag">Category Browse</span><span class="info-tag">App Details</span><span class="info-tag">Related Tags</span><span class="info-tag">Mobile Layout</span><span class="info-tag">Quick Access</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.info} How The Directory Works</div>
+        <p>YONO GAMES HUB acts as a directory and navigation layer. A game card leads to its details view, while the download action can send you to an external destination associated with that listing.</p>
+        <p>Game names, logos, trademarks and other brand assets belong to their respective owners. Availability, bonuses, withdrawals, versions and other app-specific information can change over time, so users should verify current information on the destination before installing or using an app.</p>
+        <div class="info-tags"><span class="info-tag">Directory Only</span><span class="info-tag">External Destinations</span><span class="info-tag">Verify Current Info</span><span class="info-tag">Third-Party Apps</span><span class="info-tag">Owner Trademarks</span><span class="info-tag">Information May Change</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.star} Responsible Use</div>
+        <p>If a listed app involves real-money gaming, users should check whether it is legal and appropriate in their location and should understand the financial risks before participating.</p>
+        <p>Never share passwords, OTPs, banking credentials, card details, or other sensitive information with unknown people or untrusted services.</p>
+        <div class="info-tags"><span class="info-tag">18+ Where Required</span><span class="info-tag">Check Local Laws</span><span class="info-tag">Financial Awareness</span><span class="info-tag">Protect OTPs</span><span class="info-tag">Protect Bank Details</span><span class="info-tag">Play Responsibly</span></div>
+      </div>`;
+  }else if(section==='contact'){
+    title='Contact YONO GAMES HUB';
+    content=`
+      <div class="info-block">
+        <div class="info-block-header">${icons.contact} Contact &amp; Support</div>
+        <p>Use the available contact channel shown on the website when you want to send a question, correction, suggestion, or general feedback about a listing.</p>
+        <p><strong>Typical topics:</strong> incorrect game information, broken links, listing corrections, category suggestions, website feedback, and general questions about the directory.</p>
+        <p><strong>Response guidance:</strong> Include the game name, the page you are referring to, and a short description of the issue so it can be understood quickly.</p>
+        <div class="info-tags"><span class="info-tag">General Support</span><span class="info-tag">Listing Correction</span><span class="info-tag">Broken Link Report</span><span class="info-tag">Website Feedback</span><span class="info-tag">Game Suggestion</span><span class="info-tag">Category Suggestion</span><span class="info-tag">Content Update</span><span class="info-tag">Technical Issue</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.about} What To Include In A Message</div>
+        <p>A useful support message should contain enough information to identify the page and problem without sharing private credentials.</p>
+        <ul class="feature-list">
+          <li>Game or page name</li>
+          <li>What information appears incorrect</li>
+          <li>What happens when a button or link is used</li>
+          <li>Device/browser details when reporting a display problem</li>
+          <li>A screenshot when it helps explain the issue</li>
+          <li>Do not send passwords, OTPs, PINs or banking credentials</li>
+        </ul>
+        <div class="info-tags"><span class="info-tag">Game Name</span><span class="info-tag">Page Details</span><span class="info-tag">Issue Description</span><span class="info-tag">Browser Info</span><span class="info-tag">Screenshot</span><span class="info-tag">No Passwords</span><span class="info-tag">No OTP</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.info} Game Listing Requests</div>
+        <p>If you want a game to be considered for a directory listing, provide the original game name, official/public destination, category, current app information, and any relevant corrections.</p>
+        <p>Submission or listing does not by itself mean that a game is operated, owned, endorsed, or guaranteed by YONO GAMES HUB.</p>
+        <div class="info-tags"><span class="info-tag">New Listing</span><span class="info-tag">Game Name</span><span class="info-tag">Category</span><span class="info-tag">Official Destination</span><span class="info-tag">App Information</span><span class="info-tag">Correction Request</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.star} Business &amp; Collaboration</div>
+        <p>For legitimate business, media, sponsorship, or directory-related inquiries, clearly state the purpose of the message and the organization or project involved. Avoid sending confidential account or payment information.</p>
+        <div class="info-tags"><span class="info-tag">Business Inquiry</span><span class="info-tag">Media</span><span class="info-tag">Sponsorship</span><span class="info-tag">Collaboration</span><span class="info-tag">Directory Partnership</span><span class="info-tag">Project Inquiry</span></div>
+      </div>`;
+  }else if(section==='disclaimer'){
+    title='Disclaimer &amp; Important Information';
+    content=`
+      <div class="info-block">
+        <div class="info-block-header">${icons.disclaimer} Directory Disclaimer</div>
+        <p>YONO GAMES HUB is a directory and information website. Game names, logos, screenshots, trademarks and other brand assets are associated with their respective owners. Listing a game does not by itself establish ownership, partnership, endorsement, or approval.</p>
+        <p>Information shown on the website is provided for general informational and navigation purposes. App features, bonuses, withdrawal rules, versions, availability, pricing and other details can change without notice.</p>
+        <div class="info-tags"><span class="info-tag">Directory Website</span><span class="info-tag">General Information</span><span class="info-tag">Third-Party Brands</span><span class="info-tag">No Ownership Claim</span><span class="info-tag">No Endorsement Claim</span><span class="info-tag">Information Can Change</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.about} External Links &amp; Downloads</div>
+        <p>Download buttons may open external websites or services. Those destinations are outside the direct control of this directory and may have different terms, privacy practices, security requirements, and content.</p>
+        <p>Before installing an APK or using an external service, verify the destination, review its permissions and terms, and use only sources you consider trustworthy.</p>
+        <div class="info-tags"><span class="info-tag">External Links</span><span class="info-tag">Download Destination</span><span class="info-tag">Verify Source</span><span class="info-tag">Review Permissions</span><span class="info-tag">Review Terms</span><span class="info-tag">Security Check</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.disclaimer} Real-Money Gaming Risk</div>
+        <p>Some listed apps may involve real-money gaming or financial transactions. Such activities can involve a risk of losing money and may be restricted or prohibited in certain locations.</p>
+        <p>Users are responsible for checking the laws and age requirements that apply to them before participating. Never wager more than you can afford to lose.</p>
+        <div class="info-tags"><span class="info-tag">Financial Risk</span><span class="info-tag">18+ Where Required</span><span class="info-tag">Check Local Laws</span><span class="info-tag">Responsible Play</span><span class="info-tag">Spending Limits</span><span class="info-tag">Do Not Chase Losses</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.info} Accuracy &amp; Availability</div>
+        <p>Displayed game information is intended to help users browse listings, but it should not be treated as a guarantee that an app, bonus, withdrawal method, download link, or promotion will remain available or work in the same way at a later time.</p>
+        <p>If you notice outdated or incorrect information, use the available contact channel to request a correction.</p>
+        <div class="info-tags"><span class="info-tag">Check Before Use</span><span class="info-tag">Current Information</span><span class="info-tag">Availability Changes</span><span class="info-tag">Bonus Changes</span><span class="info-tag">Withdrawal Changes</span><span class="info-tag">Report Corrections</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.privacy} Security Reminder</div>
+        <p>Never provide OTPs, passwords, PINs, card numbers, bank credentials or other sensitive information to unknown contacts claiming to represent a game, website or support team.</p>
+        <div class="info-tags"><span class="info-tag">Protect OTP</span><span class="info-tag">Protect Passwords</span><span class="info-tag">Protect PINs</span><span class="info-tag">Protect Bank Details</span><span class="info-tag">Avoid Scams</span><span class="info-tag">Verify Support</span></div>
+      </div>`;
+  }else if(section==='privacy'){
+    title='Privacy Policy';
+    content=`
+      <div class="info-block">
+        <div class="info-block-header">${icons.privacy} Privacy Overview</div>
+        <p>YONO GAMES HUB is designed as a browsing and directory experience. The information you provide directly through a contact channel should be limited to what is necessary for the request.</p>
+        <p>Do not send passwords, OTPs, PINs, bank credentials, card details, or other sensitive information through support or feedback messages.</p>
+        <div class="info-tags"><span class="info-tag">Privacy First</span><span class="info-tag">Directory Browsing</span><span class="info-tag">Data Minimization</span><span class="info-tag">No Password Sharing</span><span class="info-tag">No OTP Sharing</span><span class="info-tag">Sensitive Data Safety</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.info} Information You May Provide</div>
+        <p>If you contact the site, you may choose to provide information such as your name, email address, game name, page URL, issue description, or screenshot when needed to respond to your request.</p>
+        <p>Only provide information that is relevant to the support request.</p>
+        <div class="info-tags"><span class="info-tag">Name</span><span class="info-tag">Email</span><span class="info-tag">Game Name</span><span class="info-tag">Issue Details</span><span class="info-tag">Page Reference</span><span class="info-tag">Optional Screenshot</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.star} Analytics &amp; Cookies</div>
+        <p>The website may use basic technical or analytics mechanisms to understand page usage, performance, and traffic patterns. Browser settings can provide controls for cookies and similar technologies where supported.</p>
+        <p>External websites opened from download or other links may use their own cookies, analytics, advertising technologies and privacy policies.</p>
+        <div class="info-tags"><span class="info-tag">Analytics</span><span class="info-tag">Cookies</span><span class="info-tag">Browser Controls</span><span class="info-tag">Performance Data</span><span class="info-tag">External Policies</span><span class="info-tag">Transparency</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.about} Third-Party Websites</div>
+        <p>When you leave YONO GAMES HUB through an external link, the destination may collect and process information under its own privacy policy. Review the privacy terms of the destination before submitting personal information or installing an app.</p>
+        <div class="info-tags"><span class="info-tag">Third-Party Sites</span><span class="info-tag">Review Privacy Policy</span><span class="info-tag">External Data Practices</span><span class="info-tag">User Choice</span><span class="info-tag">Verify Destination</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-header">${icons.disclaimer} Privacy &amp; Security Tips</div>
+        <ul class="feature-list">
+          <li>Use strong, unique passwords for your accounts.</li>
+          <li>Never share OTPs, PINs or banking credentials.</li>
+          <li>Check the website/app domain before entering personal information.</li>
+          <li>Review app permissions before installation.</li>
+          <li>Keep Android and browser security updates current.</li>
+          <li>Contact the relevant service directly if you suspect fraud.</li>
+        </ul>
+        <div class="info-tags"><span class="info-tag">Strong Passwords</span><span class="info-tag">OTP Safety</span><span class="info-tag">Permission Review</span><span class="info-tag">Secure Browsing</span><span class="info-tag">Security Updates</span><span class="info-tag">Fraud Awareness</span></div>
+      </div>`;
+  }
+
+  infoView.innerHTML=`
+    <button class="back-button" id="infoBackButton">${icons.back} Back to All Games</button>
+    <h1 class="info-section-title">${title}</h1>
+    ${content}
+  `;
+  document.getElementById('infoBackButton')?.addEventListener('click',showHome);
+}
+
+/* ---------- VIEW SWITCHING ---------- */
+function updateBottomNav(activeNav){
+  document.querySelectorAll('.bottom-nav-item').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.nav===activeNav);
+  });
+}
+
+function openAppDetail(appId){
+  const selectedApp=APPS.find(a=>a.id===appId);
+  if(selectedApp) document.title=selectedApp.name;
+  renderDetail(appId);
+  homeView.style.display='none';
+  detailView.classList.add('active');
+  infoView.classList.remove('active');
+  state.showingDetail=true;
+  state.showingInfo=false;
+  updateBottomNav('home');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showHome(){
+  document.title='YONO GAMES HUB';
+  detailView.classList.remove('active');
+  infoView.classList.remove('active');
+  homeView.style.display='block';
+  state.showingDetail=false;
+  state.showingInfo=false;
+  renderHome(state.category);
+  updateBottomNav('home');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showInfo(section){
+  renderInfo(section);
+  homeView.style.display='none';
+  detailView.classList.remove('active');
+  infoView.classList.add('active');
+  state.showingDetail=false;
+  state.showingInfo=true;
+  updateBottomNav(section);
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeDrawer();
+}
+
+window.openAppDetail=openAppDetail;
+
+/* ---------- DRAWER ---------- */
+function openDrawer(){
+  drawer.classList.add('open');
+  drawerOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  drawer.classList.remove('open');
+  drawerOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+menuToggle.addEventListener('click',openDrawer);
+drawerClose.addEventListener('click',closeDrawer);
+drawerOverlay.addEventListener('click',closeDrawer);
+
+drawer.addEventListener('click',(e)=>{
+  const item=e.target.closest('.drawer-menu-item');
+  if(!item)return;
+  if(item.dataset.category){
+    const cat=item.dataset.category;
+    document.querySelectorAll('.drawer-menu-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+    document.querySelectorAll('.menu-chip').forEach(c=>{
+      c.classList.toggle('active',c.dataset.category===cat);
+    });
+    closeDrawer();
+    if(state.showingDetail||state.showingInfo){
+      showHome();
+      setTimeout(()=>renderHome(cat),60);
+    }else{
+      renderHome(cat);
+    }
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  if(item.dataset.info){
+    if(item.dataset.info==='home') showHome();
+    else showInfo(item.dataset.info);
+  }
+});
+
+/* ---------- MENU CHIPS ---------- */
+function setupMenu(){
+  menuScroll.addEventListener('click',(e)=>{
+    const chip=e.target.closest('.menu-chip');
+    if(!chip)return;
+    document.querySelectorAll('.menu-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    document.querySelectorAll('.drawer-menu-item[data-category]').forEach(i=>{
+      i.classList.toggle('active',i.dataset.category===chip.dataset.category);
+    });
+    const category=chip.dataset.category;
+    if(state.showingDetail||state.showingInfo){
+      showHome();
+      setTimeout(()=>renderHome(category),60);
+    }else{
+      renderHome(category);
+    }
+  });
+}
+
+/* ---------- BOTTOM NAV ---------- */
+bottomNav.addEventListener('click',(e)=>{
+  const btn=e.target.closest('.bottom-nav-item');
+  if(!btn)return;
+  const nav=btn.dataset.nav;
+  if(nav==='home') showHome();
+  else showInfo(nav);
+});
+
+/* ---------- INIT ---------- */
+function init(){
+  setupDiwa();
+  renderHome('all');
+  setupMenu();
+  updateBottomNav('home');
+}
+
+init();
+})();
+</script>
+</body>
+</html>
